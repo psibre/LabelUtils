@@ -4,12 +4,23 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import fr.loria.parole.annotk.Layer;
+
 public class PointTier extends Tier {
 
 	private List<Point> points = Lists.newArrayList();
 
-	public PointTier(double startTime, double endTime) {
-		super(startTime, endTime);
+	public PointTier(String name, double startTime, double endTime) {
+		super(name, startTime, endTime);
+	}
+
+	@Override
+	public Layer asLayer() {
+		Layer layer = new Layer();
+		for (Point point : points) {
+			layer.addMarker(point.asMarker());
+		}
+		return layer;
 	}
 
 }

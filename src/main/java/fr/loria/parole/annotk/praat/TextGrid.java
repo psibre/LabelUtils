@@ -17,9 +17,9 @@ public class TextGrid {
 		for (String tierName : tierNames) {
 			Tier tier;
 			if (pointTiers.contains(tierName)) {
-				tier = new PointTier(startTime, endTime);
+				tier = new PointTier(tierName, startTime, endTime);
 			} else {
-				tier = new IntervalTier(startTime, endTime);
+				tier = new IntervalTier(tierName, startTime, endTime);
 			}
 			tiers.add(tier);
 		}
