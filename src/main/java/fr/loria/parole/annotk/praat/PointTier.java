@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 
 public class PointTier extends Tier {
 
-	List<Point> points = Lists.newArrayList();
+	private List<Point> points = Lists.newArrayList();
 
 	public PointTier(double startTime, double endTime) {
 		super(startTime, endTime);

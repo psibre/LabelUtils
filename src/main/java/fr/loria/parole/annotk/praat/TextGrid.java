@@ -9,7 +9,7 @@ public class TextGrid {
 	private double xmin;
 	private double xmax;
 
-	List<Tier> tiers = Lists.newArrayList();
+	private List<Tier> tiers = Lists.newArrayList();
 
 	public TextGrid(double startTime, double endTime, List<String> tierNames, List<String> pointTiers) {
 		xmin = startTime;

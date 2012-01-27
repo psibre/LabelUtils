@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 
 public class IntervalTier extends Tier {
 
-	List<Interval> intervals = Lists.newArrayList();
+	private List<Interval> intervals = Lists.newArrayList();
 
 	public IntervalTier(double startTime, double endTime) {
 		super(startTime, endTime);

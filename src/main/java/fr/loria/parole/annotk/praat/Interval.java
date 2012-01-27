@@ -1,9 +1,9 @@
 package fr.loria.parole.annotk.praat;
 
 public class Interval {
-	double xmin;
-	double xmax;
-	String text;
+	private double xmin;
+	private double xmax;
+	private String text;
 
 	public Interval(double start, double end, String label) {
 		xmin = start;
