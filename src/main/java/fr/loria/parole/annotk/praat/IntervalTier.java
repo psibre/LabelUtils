@@ -25,11 +25,6 @@ public class IntervalTier extends AbstractTier {
 
 	@Override
 	public PraatObject read(PraatFile file) throws IOException {
-		try {
-			name = file.readString();
-		} catch (IllegalArgumentException e) {
-			// pass; file containers don't provide names
-		}
 		xmin = file.readDouble();
 		xmax = file.readDouble();
 		int numItems = file.readInteger();

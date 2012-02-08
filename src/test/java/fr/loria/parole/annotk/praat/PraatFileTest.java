@@ -35,6 +35,13 @@ public class PraatFileTest {
 	}
 
 	@Test
+	public void loadTextFile() throws IllegalArgumentException, IOException, ClassNotFoundException, NoSuchMethodException,
+			InstantiationException, IllegalAccessException, InvocationTargetException {
+		PraatObject object = PraatFile.read("test.UTF-8.IntervalTier");
+		assertNotNull(object);
+	}
+
+	@Test
 	public void loadShortTextFile() throws IllegalArgumentException, IOException, ClassNotFoundException, NoSuchMethodException,
 			InstantiationException, IllegalAccessException, InvocationTargetException {
 		PraatObject object = PraatFile.read("test.UTF-8.short.IntervalTier");

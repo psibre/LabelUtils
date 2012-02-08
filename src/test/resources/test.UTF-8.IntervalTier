@@ -1,0 +1,10 @@
+File type = "ooTextFile"
+Object class = "IntervalTier"
+
+xmin = 0 
+xmax = 1 
+intervals: size = 1 
+intervals [1]:
+    xmin = 0 
+    xmax = 1 
+    text = "ü" 
