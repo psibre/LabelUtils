@@ -2,7 +2,6 @@ package fr.loria.parole.annotk.praat;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 import com.google.common.io.Files;
@@ -10,14 +9,11 @@ import com.google.common.io.Resources;
 
 abstract public class PraatFile {
 
-	public static PraatObject read(String resource) throws IOException, ClassNotFoundException, NoSuchMethodException,
-			IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public static PraatObject read(String resource) throws Exception {
 		return read(resource, Charset.defaultCharset());
 	}
 
-	public static PraatObject read(String resource, Charset charset) throws IOException, ClassNotFoundException,
-			NoSuchMethodException, IllegalArgumentException, InstantiationException, IllegalAccessException,
-			InvocationTargetException {
+	public static PraatObject read(String resource, Charset charset) throws Exception {
 		// get path from resource
 		String path;
 		try {
@@ -42,11 +38,11 @@ abstract public class PraatFile {
 
 		// determine whether this is a text or binary file and return instance of corresponding subclass
 		if (firstLine.contains("ooTextFile")) {
-			PraatTextFile praatFile = new PraatTextFile();
-			return praatFile.read(file, charset);
+			PraatTextFile textFile = new PraatTextFile();
+			return textFile.read(file, charset);
 		} else if (firstLine.equals("ooBinaryFile")) {
-			PraatBinaryFile praatFile = new PraatBinaryFile();
-			return praatFile.read(file);
+			PraatBinaryFile binaryFile = new PraatBinaryFile();
+			return binaryFile.read(file);
 		} else {
 			throw new IllegalArgumentException("Not a Praat file: " + file);
 		}

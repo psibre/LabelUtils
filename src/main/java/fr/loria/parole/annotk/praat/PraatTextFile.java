@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 import jregex.Matcher;
@@ -20,13 +19,11 @@ public class PraatTextFile extends PraatFile {
 	private static Pattern INTEGER_PATTERN = new Pattern("(?!\\[)({target}\\d+)(?!\\])");
 	private static Pattern DOUBLE_PATTERN = new Pattern("(?!\\[)({target}\\d+(\\.\\d+)?)(?!\\])");
 
-	public PraatObject read(File file) throws IOException, ClassNotFoundException, NoSuchMethodException,
-			IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public PraatObject read(File file) throws Exception {
 		return read(file, Charset.defaultCharset());
 	}
 
-	public PraatObject read(File file, Charset charset) throws IOException, ClassNotFoundException, NoSuchMethodException,
-			IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public PraatObject read(File file, Charset charset) throws Exception {
 		reader = Files.newReader(file, charset);
 		reader.readLine(); // discard first line
 
@@ -48,7 +45,7 @@ public class PraatTextFile extends PraatFile {
 		try {
 			payload = (PraatObject) constructor.newInstance(this);
 		} catch (ClassCastException e) {
-			throw new ClassCastException("");
+			throw new ClassCastException("Could not cast " + praatClass + " to PraatObject");
 		}
 		return payload;
 	}
