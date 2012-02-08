@@ -8,24 +8,24 @@ public class PraatFileTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void handleMissingResource() throws IOException {
-		new PraatFile("--INVALID_RESOURCE_NAME--");
+		PraatFile.read("--INVALID_RESOURCE_NAME--");
 	}
 
 	@Test(expected = IOException.class)
 	public void handleUnreadbleResource() throws IOException {
-		// new PraatFile("unreadableFile");
+		// PraatFile.read("unreadableFile");
 		// TODO make maven copy this test resource and then set permissions to 000
 		throw new IOException();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void handleEmptyResource() throws IOException {
-		new PraatFile("emptyFile");
+		PraatFile.read("emptyFile");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void handleNonPraatFile() throws IOException {
-		new PraatFile("randomFile.txt");
+		PraatFile.read("randomFile.txt");
 	}
 
 }

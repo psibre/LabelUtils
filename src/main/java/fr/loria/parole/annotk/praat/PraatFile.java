@@ -5,18 +5,15 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 
 import com.google.common.io.Files;
-import com.google.common.io.InputSupplier;
 import com.google.common.io.Resources;
 
-public class PraatFile {
+abstract public class PraatFile {
 
-	protected InputSupplier<?> inputSupplier;
-
-	public PraatFile(String resource) throws IOException {
-		this(resource, Charset.defaultCharset());
+	public static PraatFile read(String resource) throws IOException {
+		return read(resource, Charset.defaultCharset());
 	}
 
-	public PraatFile(String resource, Charset charset) throws IOException {
+	public static PraatFile read(String resource, Charset charset) throws IOException {
 		// get path from resource
 		String path;
 		try {
@@ -39,22 +36,14 @@ public class PraatFile {
 			throw new IllegalArgumentException("File is empty: " + file);
 		}
 
-		// determine whether this is a text or binary file
+		// determine whether this is a text or binary file and return instance of corresponding subclass
 		if (firstLine.contains("ooTextFile")) {
-			readText(file, charset);
+			return new PraatTextFile(file, charset);
 		} else if (firstLine.equals("ooBinaryFile")) {
-			readBinary(file);
+			return new PraatBinaryFile(file);
 		} else {
 			throw new IllegalArgumentException("Not a Praat file: " + file);
 		}
-	}
-
-	private void readText(File file, Charset charset) throws IOException {
-		inputSupplier = Files.newReaderSupplier(file, charset);
-	}
-
-	private void readBinary(File file) throws IOException {
-		inputSupplier = Files.newInputStreamSupplier(file);
 	}
 
 }
