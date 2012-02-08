@@ -3,6 +3,7 @@ package fr.loria.parole.annotk.praat;
 import java.io.IOException;
 import java.util.List;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
 import fr.loria.parole.annotk.Layer;
@@ -51,4 +52,9 @@ public class IntervalTier extends AbstractTier {
 		return layer;
 	}
 
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("xmin", xmin).add("xmax", xmax).add("name", name).add("intervals", intervals)
+				.toString();
+	}
 }
