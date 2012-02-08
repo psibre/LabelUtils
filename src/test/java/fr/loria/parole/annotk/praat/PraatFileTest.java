@@ -48,4 +48,12 @@ public class PraatFileTest {
 		assertNotNull(object);
 	}
 
+	@Test
+	public void compareDefaultAndShortFormats() throws IllegalArgumentException, IOException, ClassNotFoundException, NoSuchMethodException,
+			InstantiationException, IllegalAccessException, InvocationTargetException {
+		PraatObject object = PraatFile.read("test.UTF-8.IntervalTier");
+		PraatObject shortObject = PraatFile.read("test.UTF-8.short.IntervalTier");
+		assertEquals(object, shortObject);
+	}
+
 }

@@ -25,4 +25,20 @@ public class Interval {
 	public String toString() {
 		return Objects.toStringHelper(this).add("xmin", xmin).add("xmax", xmax).add("text", text).toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Interval) {
+			final Interval other = (Interval) obj;
+			return Objects.equal(this.xmin, other.xmin) && Objects.equal(this.xmax, other.xmax)
+					&& Objects.equal(this.text, other.text);
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(xmin, xmax, text);
+	}
 }

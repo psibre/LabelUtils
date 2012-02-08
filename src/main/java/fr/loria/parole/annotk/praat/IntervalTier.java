@@ -57,4 +57,20 @@ public class IntervalTier extends AbstractTier {
 		return Objects.toStringHelper(this).add("xmin", xmin).add("xmax", xmax).add("name", name).add("intervals", intervals)
 				.toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof IntervalTier) {
+			final IntervalTier other = (IntervalTier) obj;
+			return Objects.equal(this.xmin, other.xmin) && Objects.equal(this.xmax, other.xmax)
+					&& Objects.equal(this.name, other.name) && Objects.equal(this.intervals, other.intervals);
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(xmin, xmax, name, intervals);
+	}
 }
