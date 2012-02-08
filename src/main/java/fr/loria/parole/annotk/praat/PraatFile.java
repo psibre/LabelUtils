@@ -2,6 +2,7 @@ package fr.loria.parole.annotk.praat;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 import com.google.common.io.Files;
@@ -9,11 +10,14 @@ import com.google.common.io.Resources;
 
 abstract public class PraatFile {
 
-	public static PraatFile read(String resource) throws IOException {
+	public static PraatObject read(String resource) throws IOException, ClassNotFoundException, NoSuchMethodException,
+			IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		return read(resource, Charset.defaultCharset());
 	}
 
-	public static PraatFile read(String resource, Charset charset) throws IOException {
+	public static PraatObject read(String resource, Charset charset) throws IOException, ClassNotFoundException,
+			NoSuchMethodException, IllegalArgumentException, InstantiationException, IllegalAccessException,
+			InvocationTargetException {
 		// get path from resource
 		String path;
 		try {
@@ -38,9 +42,11 @@ abstract public class PraatFile {
 
 		// determine whether this is a text or binary file and return instance of corresponding subclass
 		if (firstLine.contains("ooTextFile")) {
-			return new PraatTextFile(file, charset);
+			PraatTextFile praatFile = new PraatTextFile();
+			return praatFile.read(file, charset);
 		} else if (firstLine.equals("ooBinaryFile")) {
-			return new PraatBinaryFile(file);
+			PraatBinaryFile praatFile = new PraatBinaryFile();
+			return praatFile.read(file);
 		} else {
 			throw new IllegalArgumentException("Not a Praat file: " + file);
 		}

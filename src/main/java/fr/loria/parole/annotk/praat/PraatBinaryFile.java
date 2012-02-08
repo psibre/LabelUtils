@@ -5,24 +5,25 @@ import java.io.IOException;
 
 public class PraatBinaryFile extends PraatFile {
 
-	public PraatBinaryFile(File file) {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String readString() throws IOException {
+	public PraatObject read(File file) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int readInteger() throws IOException {
+	String readString() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	int readInteger() throws IOException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double readDouble() throws IOException {
+	double readDouble() throws IOException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

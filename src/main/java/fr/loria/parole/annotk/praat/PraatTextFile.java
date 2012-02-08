@@ -3,6 +3,8 @@ package fr.loria.parole.annotk.praat;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 import jregex.Matcher;
@@ -14,14 +16,37 @@ public class PraatTextFile extends PraatFile {
 
 	private BufferedReader reader;
 
-	public PraatTextFile(File file) throws IOException {
-		this(file, Charset.defaultCharset());
+	public PraatObject read(File file) throws IOException, ClassNotFoundException, NoSuchMethodException,
+			IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		return read(file, Charset.defaultCharset());
 	}
 
-	public PraatTextFile(File file, Charset charset) throws IOException {
+	public PraatObject read(File file, Charset charset) throws IOException, ClassNotFoundException, NoSuchMethodException,
+			IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		reader = Files.newReader(file, charset);
 		reader.readLine(); // discard first line
+
+		// determine payload class
 		String classString = readString();
+
+		// use reflection to create payload instance
+		String packageName = getClass().getPackage().getName();
+		String fullyQuallifiedClassString = packageName + "." + classString;
+		Class<?> praatClass;
+		try {
+			praatClass = Class.forName(fullyQuallifiedClassString);
+		} catch (ClassNotFoundException e) {
+			throw new ClassNotFoundException("Unsupported Praat class: " + classString);
+		}
+		Class<?> superClass = getClass().getSuperclass();
+		Constructor<?> constructor = praatClass.getConstructor(superClass);
+		PraatObject payload;
+		try {
+			payload = (PraatObject) constructor.newInstance(this);
+		} catch (ClassCastException e) {
+			throw new ClassCastException("");
+		}
+		return payload;
 	}
 
 	@Override
