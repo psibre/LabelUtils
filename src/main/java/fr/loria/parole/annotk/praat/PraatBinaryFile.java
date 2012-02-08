@@ -11,21 +11,27 @@ public class PraatBinaryFile extends PraatFile {
 	}
 
 	@Override
-	String readString() throws IOException {
+	public String readString() throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	int readInteger() throws IOException {
+	public int readInteger() throws IOException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	double readDouble() throws IOException {
+	public double readDouble() throws IOException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public PraatObject readPayLoad() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

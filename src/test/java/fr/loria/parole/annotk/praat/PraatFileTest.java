@@ -3,11 +3,22 @@ package fr.loria.parole.annotk.praat;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.base.Charsets;
 
 public class PraatFileTest {
+
+	private PraatObject utf8IntervalTier;
+	private PraatObject utf8ShortIntervalTier;
+
+	@Before
+	public void setUp() throws Exception {
+		utf8IntervalTier = PraatFile.read("test.UTF-8.IntervalTier", Charsets.UTF_8);
+		utf8ShortIntervalTier = PraatFile.read("test.UTF-8.short.IntervalTier", Charsets.UTF_8);
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void handleMissingResource() throws Exception {
@@ -32,22 +43,8 @@ public class PraatFileTest {
 	}
 
 	@Test
-	public void loadTextFile() throws Exception {
-		PraatObject object = PraatFile.read("test.UTF-8.IntervalTier", Charsets.UTF_8);
-		assertNotNull(object);
-	}
-
-	@Test
-	public void loadShortTextFile() throws Exception {
-		PraatObject object = PraatFile.read("test.UTF-8.short.IntervalTier", Charsets.UTF_8);
-		assertNotNull(object);
-	}
-
-	@Test
 	public void compareDefaultAndShortFormats() throws Exception {
-		PraatObject object = PraatFile.read("test.UTF-8.IntervalTier", Charsets.UTF_8);
-		PraatObject shortObject = PraatFile.read("test.UTF-8.short.IntervalTier", Charsets.UTF_8);
-		assertEquals(object, shortObject);
+		assertEquals(utf8IntervalTier, utf8ShortIntervalTier);
 	}
 
 }

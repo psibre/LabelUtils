@@ -27,17 +27,34 @@ public class PraatTextFile extends PraatFile {
 		reader = Files.newReader(file, charset);
 		reader.readLine(); // discard first line
 
-		// determine payload class
-		String classString = readString();
+		// determine payload class (and ignore missing name)
+		String className = readString();
+		return readPayload(className);
+	}
 
+	@Override
+	public PraatObject readPayLoad() throws Exception {
+		// determine payload class
+		String className = readString();
+
+		// read name
+		String name = readString();
+
+		// read payload
+		PraatObject object = readPayload(className);
+		object.setName(name);
+		return object;
+	}
+
+	private PraatObject readPayload(String className) throws Exception {
 		// use reflection to create payload instance
 		String packageName = getClass().getPackage().getName();
-		String fullyQuallifiedClassString = packageName + "." + classString;
+		String fullyQuallifiedClassString = packageName + "." + className;
 		Class<?> praatClass;
 		try {
 			praatClass = Class.forName(fullyQuallifiedClassString);
 		} catch (ClassNotFoundException e) {
-			throw new ClassNotFoundException("Unsupported Praat class: " + classString);
+			throw new ClassNotFoundException("Unsupported Praat class: " + className);
 		}
 		Class<?> superClass = getClass().getSuperclass();
 		Constructor<?> constructor = praatClass.getConstructor(superClass);

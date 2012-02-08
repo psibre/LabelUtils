@@ -48,10 +48,12 @@ abstract public class PraatFile {
 		}
 	}
 
-	abstract String readString() throws IOException;
+	abstract public String readString() throws IOException;
 
-	abstract int readInteger() throws IOException;
+	abstract public int readInteger() throws IOException;
 
-	abstract double readDouble() throws IOException;
+	abstract public double readDouble() throws IOException;
+
+	abstract public PraatObject readPayLoad() throws Exception;
 
 }
