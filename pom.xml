@@ -21,6 +21,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>net.sourceforge.jregex</groupId>
+			<artifactId>jregex</artifactId>
+			<version>1.2_01</version>
+		</dependency>
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
