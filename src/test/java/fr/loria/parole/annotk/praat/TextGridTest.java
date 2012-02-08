@@ -5,15 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CollectionTest {
+public class TextGridTest {
 
-	private PraatObject utf8Collection;
-	private PraatObject utf8ShortCollection;
+	private PraatObject utf8TextGrid;
+	private PraatObject utf8ShortTextGrid;
 
 	@Before
 	public void setUp() throws Exception {
-		utf8Collection = PraatFile.read("test.UTF-8.Collection");
-		utf8ShortCollection = PraatFile.read("test.UTF-8.short.Collection");
+		utf8TextGrid = PraatFile.read("test.UTF-8.TextGrid");
+		utf8ShortTextGrid = PraatFile.read("test.UTF-8.short.TextGrid");
 	}
 
 	@Test

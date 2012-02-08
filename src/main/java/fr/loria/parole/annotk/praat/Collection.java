@@ -8,6 +8,10 @@ public class Collection implements PraatObject {
 
 	List<PraatObject> items = Lists.newArrayList();
 
+	protected Collection() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Collection(PraatFile file) throws Exception {
 		read(file);
 	}

@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 
 import fr.loria.parole.annotk.Layer;
 
-public class PointTier extends Tier {
+public class PointTier extends AbstractTier {
 
 	private List<Point> points = Lists.newArrayList();
 
@@ -21,6 +21,12 @@ public class PointTier extends Tier {
 			layer.addMarker(point.asMarker());
 		}
 		return layer;
+	}
+
+	@Override
+	public PraatObject read(PraatFile file) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
