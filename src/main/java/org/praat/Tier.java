@@ -1,12 +1,11 @@
 package org.praat;
 
 import java.util.List;
-import java.util.ListIterator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
-abstract public class Tier implements PraatObject, Iterable<Point> {
+abstract public class Tier implements PraatObject {
 
 	protected double xmin;
 	protected double xmax;
@@ -39,12 +38,6 @@ abstract public class Tier implements PraatObject, Iterable<Point> {
 	@Override
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Override
-	public ListIterator<Point> iterator() {
-		ListIterator<Point> iterator = items.listIterator();
-		return iterator;
 	}
 
 	@Override

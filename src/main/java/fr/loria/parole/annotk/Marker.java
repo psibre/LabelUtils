@@ -6,6 +6,7 @@ import org.praat.Point;
 import com.google.common.base.Objects;
 
 public class Marker implements Comparable<Marker> {
+
 	private double time;
 	private String label;
 	private Anchor type;
@@ -26,6 +27,14 @@ public class Marker implements Comparable<Marker> {
 		time = interval.getStartTime();
 		label = interval.getText();
 		type = Anchor.START;
+	}
+
+	public double getTime() {
+		return time;
+	}
+
+	public String getLabel() {
+		return label;
 	}
 
 	/**
@@ -49,7 +58,8 @@ public class Marker implements Comparable<Marker> {
 
 	@Override
 	public String toString() {
-		String id = Objects.toStringHelper(this).addValue(time).addValue(label).addValue(type).toString();
+		String id = Objects.toStringHelper(this).add("time", time).add("label", label).add("type", type).toString();
 		return id;
 	}
+
 }

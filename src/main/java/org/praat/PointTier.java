@@ -1,8 +1,10 @@
 package org.praat;
 
+import java.util.ListIterator;
+
 import com.google.common.base.Objects;
 
-public class PointTier extends Tier {
+public class PointTier extends Tier implements Iterable<Point> {
 
 	public PointTier(String name, double startTime, double endTime) {
 		super(name, startTime, endTime);
@@ -26,6 +28,12 @@ public class PointTier extends Tier {
 			items.add(point);
 		}
 		return this;
+	}
+
+	@Override
+	public ListIterator<Point> iterator() {
+		ListIterator<Point> iterator = items.listIterator();
+		return iterator;
 	}
 
 	@Override

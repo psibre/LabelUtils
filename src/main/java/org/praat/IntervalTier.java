@@ -2,13 +2,25 @@ package org.praat;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ListIterator;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-public class IntervalTier extends Tier {
+public class IntervalTier extends Tier implements Iterable<Interval> {
 
 	private List<Interval> items = Lists.newArrayList();
+
+	public IntervalTier(String name, List<Interval> intervals) {
+		this.name = name;
+
+		// update time domain
+		xmin = intervals.get(0).getStartTime();
+		xmax = Iterables.getLast(intervals).getEndTime();
+
+		items = intervals;
+	}
 
 	public IntervalTier(String name, double startTime, double endTime) {
 		super(name, startTime, endTime);
@@ -18,6 +30,10 @@ public class IntervalTier extends Tier {
 
 	public IntervalTier(PraatFile file) throws IOException {
 		read(file);
+	}
+
+	public void addInterval(Interval interval) {
+		items.add(interval);
 	}
 
 	@Override
@@ -35,6 +51,12 @@ public class IntervalTier extends Tier {
 			items.add(interval);
 		}
 		return this;
+	}
+
+	@Override
+	public ListIterator<Interval> iterator() {
+		ListIterator<Interval> iterator = items.listIterator();
+		return iterator;
 	}
 
 	@Override
