@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 
 import fr.loria.parole.annotk.Layer;
 
-public class PointTier extends AbstractTier {
+public class PointTier extends Tier {
 
 	private List<Point> points = Lists.newArrayList();
 

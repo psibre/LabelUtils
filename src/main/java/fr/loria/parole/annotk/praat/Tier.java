@@ -2,16 +2,16 @@ package fr.loria.parole.annotk.praat;
 
 import fr.loria.parole.annotk.Layer;
 
-abstract public class AbstractTier implements PraatObject {
+abstract public class Tier implements PraatObject {
 	double xmin;
 	double xmax;
 	String name;
 
-	protected AbstractTier() {
+	protected Tier() {
 		// empty constructor
 	}
 
-	public AbstractTier(String name, double startTime, double endTime) {
+	public Tier(String name, double startTime, double endTime) {
 		this.name = name;
 		xmin = startTime;
 		xmax = endTime;

@@ -30,7 +30,7 @@ public class TextGrid extends Collection implements PraatObject {
 		xmin = startTime;
 		xmax = endTime;
 		for (String tierName : tierNames) {
-			AbstractTier tier;
+			Tier tier;
 			if (pointTiers.contains(tierName)) {
 				tier = new PointTier(tierName, startTime, endTime);
 			} else {

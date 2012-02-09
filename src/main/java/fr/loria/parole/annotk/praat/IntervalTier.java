@@ -10,7 +10,7 @@ import fr.loria.parole.annotk.Layer;
 import fr.loria.parole.annotk.Marker;
 import fr.loria.parole.annotk.Marker.Anchor;
 
-public class IntervalTier extends AbstractTier {
+public class IntervalTier extends Tier {
 
 	private List<Interval> intervals = Lists.newArrayList();
 
