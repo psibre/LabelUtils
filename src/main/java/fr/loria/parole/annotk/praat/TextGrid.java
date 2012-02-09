@@ -2,10 +2,13 @@ package fr.loria.parole.annotk.praat;
 
 import java.util.List;
 
+import com.google.common.base.Objects;
+
 public class TextGrid extends Collection implements PraatObject {
 
 	private double xmin;
 	private double xmax;
+	private String name;
 
 	public TextGrid(PraatFile file) throws Exception {
 		read(file);
@@ -42,5 +45,36 @@ public class TextGrid extends Collection implements PraatObject {
 		xmin = file.readDouble();
 		xmax = file.readDouble();
 		return super.read(file);
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("name", name).add("xmin", xmin).add("xmax", xmax).add("tiers", items).toString();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof TextGrid) {
+			final TextGrid other = (TextGrid) obj;
+			return Objects.equal(this.name, other.name) && Objects.equal(this.xmin, other.xmin)
+					&& Objects.equal(this.xmax, other.xmax) && Objects.equal(this.items, other.items);
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(name, xmin, xmax, items);
 	}
 }

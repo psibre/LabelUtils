@@ -2,6 +2,7 @@ package fr.loria.parole.annotk.praat;
 
 import java.util.List;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
 public class Collection implements PraatObject {
@@ -34,6 +35,25 @@ public class Collection implements PraatObject {
 	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("items", items).toString();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Collection) {
+			final Collection other = (Collection) obj;
+			return Objects.equal(this.items, other.items);
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(items);
 	}
 }

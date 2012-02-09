@@ -43,7 +43,7 @@ public class PraatFileTest {
 	}
 
 	@Test
-	public void compareDefaultAndShortFormats() throws Exception {
+	public void compareFormats() throws Exception {
 		assertEquals(utf8IntervalTier, utf8ShortIntervalTier);
 	}
 

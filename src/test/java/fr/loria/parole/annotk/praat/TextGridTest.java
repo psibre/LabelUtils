@@ -17,8 +17,8 @@ public class TextGridTest {
 	}
 
 	@Test
-	public void test() {
-		// fail("Not yet implemented");
+	public void compareFormats() {
+		assertEquals(utf8TextGrid, utf8ShortTextGrid);
 	}
 
 }

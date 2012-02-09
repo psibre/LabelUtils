@@ -17,8 +17,8 @@ public class CollectionTest {
 	}
 
 	@Test
-	public void test() {
-		// fail("Not yet implemented");
+	public void compareFormats() {
+		assertEquals(utf8Collection, utf8ShortCollection);
 	}
 
 }
