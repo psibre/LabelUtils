@@ -2,7 +2,6 @@ package fr.loria.parole.annotk.praat;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.ListIterator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -11,14 +10,14 @@ import fr.loria.parole.annotk.Layer;
 import fr.loria.parole.annotk.Marker;
 import fr.loria.parole.annotk.Marker.Anchor;
 
-public class IntervalTier extends Tier implements Iterable<Interval> {
+public class IntervalTier extends Tier {
 
-	private List<Interval> intervals = Lists.newArrayList();
+	private List<Interval> items = Lists.newArrayList();
 
 	public IntervalTier(String name, double startTime, double endTime) {
 		super(name, startTime, endTime);
 		Interval interval = new Interval(startTime, endTime, "");
-		intervals.add(interval);
+		items.add(interval);
 	}
 
 	public IntervalTier(PraatFile file) throws IOException {
@@ -37,7 +36,7 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 			double end = file.readDouble();
 			String label = file.readString();
 			Interval interval = new Interval(start, end, label);
-			intervals.add(interval);
+			items.add(interval);
 		}
 		return this;
 	}
@@ -45,7 +44,7 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 	@Override
 	public Layer asLayer() {
 		Layer layer = new Layer();
-		for (Interval interval : intervals) {
+		for (Interval interval : items) {
 			layer.addMarker(interval.asMarker());
 		}
 		Marker end = new Marker(xmax, null, Anchor.END);
@@ -54,30 +53,9 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 	}
 
 	@Override
-	public ListIterator<Interval> iterator() {
-		ListIterator<Interval> iterator = intervals.listIterator();
-		return iterator;
-	}
-
-	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).add("xmin", xmin).add("xmax", xmax).add("name", name).add("intervals", intervals)
+		return Objects.toStringHelper(this).add("xmin", xmin).add("xmax", xmax).add("name", name).add("intervals", items)
 				.toString();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof IntervalTier) {
-			final IntervalTier other = (IntervalTier) obj;
-			return Objects.equal(this.xmin, other.xmin) && Objects.equal(this.xmax, other.xmax)
-					&& Objects.equal(this.name, other.name) && Objects.equal(this.intervals, other.intervals);
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(xmin, xmax, name, intervals);
-	}
 }

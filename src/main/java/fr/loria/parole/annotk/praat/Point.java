@@ -6,8 +6,9 @@ import fr.loria.parole.annotk.Marker;
 import fr.loria.parole.annotk.Marker.Anchor;
 
 public class Point {
-	private double time;
-	private String text;
+
+	protected double time;
+	protected String text;
 
 	public Point(double time, String text) {
 		this.time = time;
@@ -38,4 +39,5 @@ public class Point {
 	public int hashCode() {
 		return Objects.hashCode(time, text);
 	}
+
 }

@@ -5,32 +5,30 @@ import com.google.common.base.Objects;
 import fr.loria.parole.annotk.Marker;
 import fr.loria.parole.annotk.Marker.Anchor;
 
-public class Interval {
-	private double xmin;
-	private double xmax;
-	private String text;
+public class Interval extends Point {
+
+	private double endTime;
 
 	public Interval(double start, double end, String label) {
-		xmin = start;
-		xmax = end;
-		text = label;
+		super(start, label);
+		endTime = end;
 	}
 
 	public Marker asMarker() {
-		Marker marker = new Marker(xmin, text, Anchor.START);
+		Marker marker = new Marker(time, text, Anchor.START);
 		return marker;
 	}
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).add("xmin", xmin).add("xmax", xmax).add("text", text).toString();
+		return Objects.toStringHelper(this).add("xmin", time).add("xmax", endTime).add("text", text).toString();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Interval) {
 			final Interval other = (Interval) obj;
-			return Objects.equal(this.xmin, other.xmin) && Objects.equal(this.xmax, other.xmax)
+			return Objects.equal(this.time, other.time) && Objects.equal(this.endTime, other.endTime)
 					&& Objects.equal(this.text, other.text);
 		} else {
 			return false;
@@ -39,6 +37,7 @@ public class Interval {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(xmin, xmax, text);
+		return Objects.hashCode(time, endTime, text);
 	}
+
 }
