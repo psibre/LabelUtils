@@ -2,9 +2,6 @@ package fr.loria.parole.annotk.praat;
 
 import com.google.common.base.Objects;
 
-import fr.loria.parole.annotk.Marker;
-import fr.loria.parole.annotk.Marker.Anchor;
-
 public class Point {
 
 	protected double time;
@@ -15,9 +12,12 @@ public class Point {
 		this.text = text;
 	}
 
-	public Marker asMarker() {
-		Marker marker = new Marker(time, text, Anchor.POINT);
-		return marker;
+	public double getTime() {
+		return time;
+	}
+
+	public String getText() {
+		return text;
 	}
 
 	@Override

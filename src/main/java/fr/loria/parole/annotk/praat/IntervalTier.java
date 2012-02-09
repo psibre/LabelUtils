@@ -6,10 +6,6 @@ import java.util.List;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
-import fr.loria.parole.annotk.Layer;
-import fr.loria.parole.annotk.Marker;
-import fr.loria.parole.annotk.Marker.Anchor;
-
 public class IntervalTier extends Tier {
 
 	private List<Interval> items = Lists.newArrayList();
@@ -39,17 +35,6 @@ public class IntervalTier extends Tier {
 			items.add(interval);
 		}
 		return this;
-	}
-
-	@Override
-	public Layer asLayer() {
-		Layer layer = new Layer();
-		for (Interval interval : items) {
-			layer.addMarker(interval.asMarker());
-		}
-		Marker end = new Marker(xmax, null, Anchor.END);
-		layer.addMarker(end);
-		return layer;
 	}
 
 	@Override

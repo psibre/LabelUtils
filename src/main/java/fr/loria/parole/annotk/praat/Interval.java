@@ -2,9 +2,6 @@ package fr.loria.parole.annotk.praat;
 
 import com.google.common.base.Objects;
 
-import fr.loria.parole.annotk.Marker;
-import fr.loria.parole.annotk.Marker.Anchor;
-
 public class Interval extends Point {
 
 	private double endTime;
@@ -14,9 +11,12 @@ public class Interval extends Point {
 		endTime = end;
 	}
 
-	public Marker asMarker() {
-		Marker marker = new Marker(time, text, Anchor.START);
-		return marker;
+	public double getStartTime() {
+		return time;
+	}
+
+	public double getEndTime() {
+		return endTime;
 	}
 
 	@Override

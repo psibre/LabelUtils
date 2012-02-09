@@ -2,8 +2,6 @@ package fr.loria.parole.annotk.praat;
 
 import com.google.common.base.Objects;
 
-import fr.loria.parole.annotk.Layer;
-
 public class PointTier extends Tier {
 
 	public PointTier(String name, double startTime, double endTime) {
@@ -28,15 +26,6 @@ public class PointTier extends Tier {
 			items.add(point);
 		}
 		return this;
-	}
-
-	@Override
-	public Layer asLayer() {
-		Layer layer = new Layer();
-		for (Point point : items) {
-			layer.addMarker(point.asMarker());
-		}
-		return layer;
 	}
 
 	@Override

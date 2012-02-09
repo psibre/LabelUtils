@@ -2,6 +2,9 @@ package fr.loria.parole.annotk;
 
 import com.google.common.base.Objects;
 
+import fr.loria.parole.annotk.praat.Interval;
+import fr.loria.parole.annotk.praat.Point;
+
 public class Marker implements Comparable<Marker> {
 	private double time;
 	private String label;
@@ -11,6 +14,18 @@ public class Marker implements Comparable<Marker> {
 		this.time = time;
 		this.label = label;
 		this.type = type;
+	}
+
+	public Marker(Point point) {
+		time = point.getTime();
+		label = point.getText();
+		type = Anchor.POINT;
+	}
+
+	public Marker(Interval interval) {
+		time = interval.getStartTime();
+		label = interval.getText();
+		type = Anchor.START;
 	}
 
 	/**

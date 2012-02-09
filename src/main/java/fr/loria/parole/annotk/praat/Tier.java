@@ -6,8 +6,6 @@ import java.util.ListIterator;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
-import fr.loria.parole.annotk.Layer;
-
 abstract public class Tier implements PraatObject, Iterable<Point> {
 
 	protected double xmin;
@@ -25,6 +23,14 @@ abstract public class Tier implements PraatObject, Iterable<Point> {
 		xmax = endTime;
 	}
 
+	public double getStartTime() {
+		return xmin;
+	}
+
+	public double getEndTime() {
+		return xmax;
+	}
+
 	@Override
 	public String getName() {
 		return name;
@@ -40,8 +46,6 @@ abstract public class Tier implements PraatObject, Iterable<Point> {
 		ListIterator<Point> iterator = items.listIterator();
 		return iterator;
 	}
-
-	public abstract Layer asLayer();
 
 	@Override
 	public boolean equals(Object obj) {
