@@ -1,4 +1,4 @@
-package fr.loria.parole.annotk.praat;
+package org.praat;
 
 import java.util.List;
 

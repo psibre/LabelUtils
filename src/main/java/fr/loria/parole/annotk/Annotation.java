@@ -2,11 +2,11 @@ package fr.loria.parole.annotk;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
+import org.praat.PraatObject;
+import org.praat.TextGrid;
+import org.praat.Tier;
 
-import fr.loria.parole.annotk.praat.PraatObject;
-import fr.loria.parole.annotk.praat.TextGrid;
-import fr.loria.parole.annotk.praat.Tier;
+import com.google.common.collect.Lists;
 
 public class Annotation {
 	private List<Layer> layers = Lists.newArrayList();

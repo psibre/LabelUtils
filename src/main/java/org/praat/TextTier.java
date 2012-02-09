@@ -1,4 +1,4 @@
-package fr.loria.parole.annotk.praat;
+package org.praat;
 
 public class TextTier extends PointTier {
 

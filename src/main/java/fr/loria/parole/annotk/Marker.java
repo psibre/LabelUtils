@@ -1,9 +1,9 @@
 package fr.loria.parole.annotk;
 
-import com.google.common.base.Objects;
+import org.praat.Interval;
+import org.praat.Point;
 
-import fr.loria.parole.annotk.praat.Interval;
-import fr.loria.parole.annotk.praat.Point;
+import com.google.common.base.Objects;
 
 public class Marker implements Comparable<Marker> {
 	private double time;

@@ -2,13 +2,14 @@ package fr.loria.parole.annotk;
 
 import java.util.SortedSet;
 
+import org.praat.Interval;
+import org.praat.IntervalTier;
+import org.praat.Point;
+import org.praat.Tier;
+
 import com.google.common.collect.Sets;
 
 import fr.loria.parole.annotk.Marker.Anchor;
-import fr.loria.parole.annotk.praat.Interval;
-import fr.loria.parole.annotk.praat.IntervalTier;
-import fr.loria.parole.annotk.praat.Point;
-import fr.loria.parole.annotk.praat.Tier;
 
 public class Layer {
 	private SortedSet<Marker> markers = Sets.newTreeSet();

@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.loria.parole.annotk.praat.PraatFile;
-import fr.loria.parole.annotk.praat.TextGrid;
+import org.praat.PraatFile;
+import org.praat.TextGrid;
 
 public class AnnotationTest {
 
