@@ -2,6 +2,7 @@ package fr.loria.parole.annotk.praat;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ListIterator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -10,7 +11,7 @@ import fr.loria.parole.annotk.Layer;
 import fr.loria.parole.annotk.Marker;
 import fr.loria.parole.annotk.Marker.Anchor;
 
-public class IntervalTier extends Tier {
+public class IntervalTier extends Tier implements Iterable<Interval> {
 
 	private List<Interval> intervals = Lists.newArrayList();
 
@@ -50,6 +51,12 @@ public class IntervalTier extends Tier {
 		Marker end = new Marker(xmax, null, Anchor.END);
 		layer.addMarker(end);
 		return layer;
+	}
+
+	@Override
+	public ListIterator<Interval> iterator() {
+		ListIterator<Interval> iterator = intervals.listIterator();
+		return iterator;
 	}
 
 	@Override

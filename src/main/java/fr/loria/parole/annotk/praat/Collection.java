@@ -1,11 +1,12 @@
 package fr.loria.parole.annotk.praat;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
-public class Collection implements PraatObject {
+public class Collection implements PraatObject, Iterable<PraatObject> {
 
 	List<PraatObject> items = Lists.newArrayList();
 
@@ -35,6 +36,12 @@ public class Collection implements PraatObject {
 	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public ListIterator<PraatObject> iterator() {
+		ListIterator<PraatObject> iterator = items.listIterator();
+		return iterator;
 	}
 
 	@Override
