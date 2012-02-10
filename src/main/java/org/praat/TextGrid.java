@@ -3,6 +3,7 @@ package org.praat;
 import java.util.List;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 
 public class TextGrid extends Collection implements PraatObject {
 
@@ -10,12 +11,13 @@ public class TextGrid extends Collection implements PraatObject {
 	private double xmax;
 	private String name;
 
-	public TextGrid(PraatFile file) throws Exception {
-		read(file);
+	public TextGrid(String name, List<Tier> tiers) {
+		Iterables.addAll(items, tiers);
+		setTimeDomain();
 	}
 
 	/**
-	 * Default TextGrid constructor mimicking Praat's <b>Create TextGrid...</b> command
+	 * TextGrid constructor mimicking Praat's <b>Create TextGrid...</b> command
 	 * 
 	 * @param startTime
 	 *            Start time (s)
@@ -40,6 +42,10 @@ public class TextGrid extends Collection implements PraatObject {
 		}
 	}
 
+	public TextGrid(PraatFile file) throws Exception {
+		read(file);
+	}
+
 	@Override
 	public PraatObject read(PraatFile file) throws Exception {
 		xmin = file.readDouble();
@@ -55,6 +61,22 @@ public class TextGrid extends Collection implements PraatObject {
 	@Override
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * Ensure that the time domain of the TextGrid encloses the time domains of all Tiers.<br>
+	 * Note that if the time domains of individual Tiers differ, these deviations are <i>not</i> corrected.
+	 */
+	private void setTimeDomain() {
+		for (PraatObject item : items) {
+			Tier tier = (Tier) item;
+			if (tier.getStartTime() < xmin) {
+				xmin = tier.getStartTime();
+			}
+			if (tier.getEndTime() > xmax) {
+				xmax = tier.getEndTime();
+			}
+		}
 	}
 
 	@Override

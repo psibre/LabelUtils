@@ -19,9 +19,8 @@ public class LayerTest {
 
 	@Test
 	public void test() {
-		Layer layer = new Layer(null, intervalTier);
-		IntervalTier tier = layer.toIntervalTier();
-		assertEquals(intervalTier, tier);
+		Layer layer = new Layer(intervalTier);
+		assertEquals(intervalTier, layer.toIntervalTier());
 	}
 
 }

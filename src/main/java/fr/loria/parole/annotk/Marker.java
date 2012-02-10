@@ -24,9 +24,9 @@ public class Marker implements Comparable<Marker> {
 	}
 
 	public Marker(Interval interval) {
-		time = interval.getStartTime();
+		time = interval.getEndTime();
 		label = interval.getText();
-		type = Anchor.START;
+		type = Anchor.BOUNDARY;
 	}
 
 	public double getTime() {
@@ -37,22 +37,18 @@ public class Marker implements Comparable<Marker> {
 		return label;
 	}
 
-	/**
-	 * Does the time represent the marker itself (i.e., a point), or the start or end of an interval?
-	 * 
-	 * @author ingmar
-	 * 
-	 */
-	public enum Anchor {
-		POINT, START, END;
+	public Anchor getType() {
+		return type;
 	}
 
 	@Override
 	public int compareTo(Marker other) {
-		if (this.time < other.time)
+		if (this.time < other.time) {
 			return -1;
-		if (this.time > other.time)
+		}
+		if (this.time > other.time) {
 			return 1;
+		}
 		return 0;
 	}
 
@@ -60,6 +56,16 @@ public class Marker implements Comparable<Marker> {
 	public String toString() {
 		String id = Objects.toStringHelper(this).add("time", time).add("label", label).add("type", type).toString();
 		return id;
+	}
+
+	/**
+	 * Does the time represent the marker itself (i.e., a point), or the start or end of an interval?
+	 * 
+	 * @author ingmar
+	 * 
+	 */
+	public enum Anchor {
+		POINT, BOUNDARY;
 	}
 
 }

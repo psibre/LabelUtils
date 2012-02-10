@@ -11,15 +11,36 @@ import com.google.common.collect.Lists;
 
 public class Annotation {
 
+	private String name;
 	private List<Layer> layers = Lists.newArrayList();
 
 	public Annotation(TextGrid textGrid) {
+		name = textGrid.getName();
 		for (PraatObject object : textGrid) {
 			Tier tier = (Tier) object;
-			String name = tier.getName();
-			Layer layer = new Layer(name, tier);
+			Layer layer = new Layer(tier);
 			layers.add(layer);
 		}
+	}
+
+	public TextGrid toTextGrid() {
+		// temporarily store tiers in List
+		List<Tier> tiers = Lists.newArrayList();
+
+		// iterate over Layers
+		for (Layer layer : layers) {
+			Tier tier;
+			if (layer.containsOnlyPoints()) {
+				tier = layer.toTextTier();
+			} else {
+				tier = layer.toIntervalTier();
+			}
+			tiers.add(tier);
+		}
+
+		// construct new PointTier
+		TextGrid textGrid = new TextGrid(name, tiers);
+		return textGrid;
 	}
 
 	@Override

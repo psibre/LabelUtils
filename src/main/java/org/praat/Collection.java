@@ -18,6 +18,7 @@ public class Collection implements PraatObject, Iterable<PraatObject> {
 		read(file);
 	}
 
+	@Override
 	public PraatObject read(PraatFile file) throws Exception {
 		int numItems = file.readInteger();
 		for (int i = 0; i < numItems; i++) {

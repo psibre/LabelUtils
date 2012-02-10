@@ -23,4 +23,10 @@ public class AnnotationTest {
 		assertNotNull(annotation);
 	}
 
+	@Test
+	public void testConversion() {
+		Annotation annotation = new Annotation(textGrid);
+		assertEquals(textGrid, annotation.toTextGrid());
+	}
+
 }

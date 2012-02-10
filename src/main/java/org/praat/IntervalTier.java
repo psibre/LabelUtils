@@ -12,6 +12,13 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 
 	private List<Interval> items = Lists.newArrayList();
 
+	/**
+	 * Construct IntervalTier from a List of Intervals. The time domain of the IntervalTier will be determined by the start and
+	 * end time of the first and last Interval, respectively.
+	 * 
+	 * @param name
+	 * @param intervals
+	 */
 	public IntervalTier(String name, List<Interval> intervals) {
 		this.name = name;
 
