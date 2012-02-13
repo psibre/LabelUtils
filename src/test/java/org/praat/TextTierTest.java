@@ -1,6 +1,7 @@
 package org.praat;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class TextTierTest {
 
 	@Test
 	public void compareFormats() {
-		assertEquals(utf8TextTier, utf8ShortTextTier);
+		assertThat(utf8TextTier, is(equalTo(utf8ShortTextTier)));
 	}
 
 }
