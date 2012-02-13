@@ -1,5 +1,6 @@
 package org.praat;
 
+import java.io.File;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -26,6 +27,11 @@ public class Collection implements PraatObject, Iterable<PraatObject> {
 			items.add(item);
 		}
 		return this;
+	}
+
+	@Override
+	public void writeText(File file) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
