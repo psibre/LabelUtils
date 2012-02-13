@@ -1,10 +1,13 @@
 package org.praat;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.nio.charset.Charset;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import jregex.Matcher;
 import jregex.Pattern;
@@ -15,9 +18,32 @@ public class PraatTextFile extends PraatFile {
 
 	private BufferedReader reader;
 
+	private BufferedWriter writer;
+	private String eol;
+	protected NumberFormat number;
+
 	private static Pattern STRING_PATTERN = new Pattern("\"({target}.+)\"");
 	private static Pattern INTEGER_PATTERN = new Pattern("(?!\\[)({target}\\d+)(?!\\])");
 	private static Pattern DOUBLE_PATTERN = new Pattern("(?!\\[)({target}\\d+(\\.\\d+)?)(?!\\])");
+
+	public PraatTextFile() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PraatTextFile(File file) throws IOException {
+		this(file, Charset.defaultCharset());
+	}
+
+	public PraatTextFile(File file, Charset charset) throws IOException {
+		this(file, charset, EOL.WINDOWS);
+	}
+
+	public PraatTextFile(File file, Charset charset, EOL eol) throws IOException {
+		writer = Files.newWriter(file, charset);
+		this.eol = eol.toString();
+		number = NumberFormat.getInstance(Locale.US);
+		writeLine("File type = \"ooTextFile\"");
+	}
 
 	public PraatObject read(File file) throws Exception {
 		return read(file, Charset.defaultCharset());
@@ -149,4 +175,82 @@ public class PraatTextFile extends PraatFile {
 		}
 		throw new IllegalArgumentException("End of buffer reached without finding pattern /" + pattern + "/");
 	}
+
+	public void write(PraatObject object) throws IOException {
+		writeLine("Object class = \"%s\"", object.getClass().getSimpleName());
+		writeLine();
+		writePayLoad(object);
+		writer.flush();
+		writer.close();
+	}
+
+	public void writePayLoad(PraatObject object) throws IOException {
+		object.write(this);
+	}
+
+	@Override
+	public void writeString(String decorator, String value) throws IOException {
+		writeLine("%s \"%s\" ", decorator, value);
+	}
+
+	@Override
+	public void writeInteger(String decorator, int value) throws IOException {
+		writeLine("%s %d ", decorator, value);
+	}
+
+	@Override
+	public void writeDouble(String decorator, double value) throws IOException {
+		writeLine("%s %s ", decorator, number.format(value));
+	}
+
+	@Override
+	public void writeLine(String format, Object... args) throws IOException {
+		writer.write(String.format(Locale.US, format, args));
+		writeLine();
+	}
+
+	public void writeLine() throws IOException {
+		writer.write(eol);
+	}
+
+	/**
+	 * Constants for end-of-line (EOL) encoding, named for their prevalent operating system.
+	 * 
+	 * @author ingmar
+	 * 
+	 */
+	public enum EOL {
+
+		/**
+		 * CRLF
+		 */
+		WINDOWS {
+			@Override
+			public String toString() {
+				return "\r\n";
+			}
+		},
+
+		/**
+		 * LF
+		 */
+		UNIX {
+			@Override
+			public String toString() {
+				return "\n";
+			}
+		},
+
+		/**
+		 * CR
+		 */
+		MAC {
+			@Override
+			public String toString() {
+				return "\r";
+			}
+		};
+
+	}
+
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import org.praat.PraatTextFile.EOL;
+
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 
@@ -55,5 +57,43 @@ abstract public class PraatFile {
 	abstract public double readDouble() throws IOException;
 
 	abstract public PraatObject readPayLoad() throws Exception;
+
+	public static void writeText(PraatObject object, File file) throws IOException {
+		writeText(object, file, Charset.defaultCharset());
+	}
+
+	public static void writeText(PraatObject object, File file, Charset charset) throws IOException {
+		writeText(object, file, charset, EOL.WINDOWS);
+	}
+
+	public static void writeText(PraatObject object, File file, Charset charset, EOL eol) throws IOException {
+		PraatTextFile textFile = new PraatTextFile(file, charset, eol);
+		textFile.write(object);
+	}
+
+	public static void writeShortText(PraatObject object, File file) throws IOException {
+		writeShortText(object, file, Charset.defaultCharset());
+	}
+
+	public static void writeShortText(PraatObject object, File file, Charset charset) throws IOException {
+		writeShortText(object, file, charset, EOL.WINDOWS);
+	}
+
+	public static void writeShortText(PraatObject object, File file, Charset charset, EOL eol) throws IOException {
+		PraatTextFile textFile = new PraatShortTextFile(file);
+		textFile.write(object);
+	}
+
+	public static void writeBinary(PraatObject object, File file) {
+		// TODO Auto-generated method stub
+	}
+
+	abstract public void writeString(String decorator, String value) throws IOException;
+
+	abstract public void writeInteger(String decorator, int value) throws IOException;
+
+	abstract public void writeDouble(String decorator, double value) throws IOException;
+
+	abstract public void writeLine(String format, Object... args) throws IOException;
 
 }

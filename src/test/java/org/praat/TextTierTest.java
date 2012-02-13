@@ -37,7 +37,8 @@ public class TextTierTest {
 		String resource = "test.UTF-8.TextTier";
 		File expected = new File(Resources.getResource(resource).getPath());
 		File actual = tempDir.newFile();
-		PraatFile.read(resource).writeText(actual);
+		PraatObject object = PraatFile.read(resource);
+		PraatFile.writeText(object, actual);
 		assertThat(Files.equal(actual, expected), is(true));
 	}
 

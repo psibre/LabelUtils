@@ -34,4 +34,28 @@ public class PraatBinaryFile extends PraatFile {
 		return null;
 	}
 
+	@Override
+	public void writeString(String decorator, String value) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void writeInteger(String decorator, int value) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void writeDouble(String decorator, double value) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void writeLine(String format, Object... args) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
 }

@@ -1,6 +1,5 @@
 package org.praat;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
@@ -62,7 +61,7 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 	}
 
 	@Override
-	public void writeText(File file) {
+	public void write(PraatFile file) throws IOException {
 		// TODO Auto-generated method stub
 	}
 
