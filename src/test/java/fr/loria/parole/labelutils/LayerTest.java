@@ -1,4 +1,4 @@
-package fr.loria.parole.annotk;
+package fr.loria.parole.labelutils;
 
 import static org.junit.Assert.*;
 

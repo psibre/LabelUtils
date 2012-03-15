@@ -1,4 +1,4 @@
-package fr.loria.parole.annotk;
+package fr.loria.parole.labelutils;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,7 +17,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.PeekingIterator;
 import com.google.common.collect.Sets;
 
-import fr.loria.parole.annotk.Marker.Anchor;
+import fr.loria.parole.labelutils.Marker.Anchor;
 
 public class Layer {
 

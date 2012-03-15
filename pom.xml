@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>fr.loria.parole</groupId>
-	<artifactId>annotk</artifactId>
+	<artifactId>labelutils</artifactId>
 	<version>0.1-SNAPSHOT</version>
 
-	<name>AnnoTK</name>
-	<description>Annotation Toolkit</description>
+	<name>LabelUtils</name>
+	<description>Label/Annotation Utilities</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
