@@ -39,7 +39,7 @@ public class TextGridTest {
 		String resource = "test.UTF-8.TextGrid";
 		File expected = new File(Resources.getResource(resource).getPath());
 		File actual = tempDir.newFile();
-		PraatObject object = PraatFile.read(resource);
+		PraatObject object = PraatFile.read(resource, Charsets.UTF_8);
 		PraatFile.writeText(object, actual, Charsets.UTF_8, EOL.UNIX);
 		assertThat(Files.equal(actual, expected), is(true));
 	}
