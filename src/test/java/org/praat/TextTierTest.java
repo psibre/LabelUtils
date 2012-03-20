@@ -10,6 +10,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import org.praat.PraatTextFile.EOL;
+
+import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 
@@ -38,7 +41,7 @@ public class TextTierTest {
 		File expected = new File(Resources.getResource(resource).getPath());
 		File actual = tempDir.newFile();
 		PraatObject object = PraatFile.read(resource);
-		PraatFile.writeText(object, actual);
+		PraatFile.writeText(object, actual, Charsets.UTF_8, EOL.UNIX);
 		assertThat(Files.equal(actual, expected), is(true));
 	}
 

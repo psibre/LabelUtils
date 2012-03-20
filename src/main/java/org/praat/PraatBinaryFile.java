@@ -58,4 +58,14 @@ public class PraatBinaryFile extends PraatFile {
 
 	}
 
+	@Override
+	public void increaseIndent() {
+		// meaningless for binary files
+	}
+
+	@Override
+	public void decreaseIndent() {
+		// meaningless for binary files
+	}
+
 }

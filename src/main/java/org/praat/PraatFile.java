@@ -96,4 +96,8 @@ abstract public class PraatFile {
 
 	abstract public void writeLine(String format, Object... args) throws IOException;
 
+	abstract public void increaseIndent();
+
+	abstract public void decreaseIndent();
+
 }

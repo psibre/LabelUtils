@@ -47,8 +47,10 @@ public class PointTier extends Tier implements Iterable<Point> {
 		int p = 1;
 		for (Point point : items) {
 			file.writeLine("points [%d]:", p++);
+			file.increaseIndent();
 			file.writeDouble("number =", point.getTime());
 			file.writeString("mark =", point.getText());
+			file.decreaseIndent();
 		}
 	}
 

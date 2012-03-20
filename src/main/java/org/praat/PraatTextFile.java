@@ -12,6 +12,7 @@ import java.util.Locale;
 import jregex.Matcher;
 import jregex.Pattern;
 
+import com.google.common.base.Strings;
 import com.google.common.io.Files;
 
 public class PraatTextFile extends PraatFile {
@@ -21,6 +22,8 @@ public class PraatTextFile extends PraatFile {
 	private BufferedWriter writer;
 	private String eol;
 	protected NumberFormat number;
+	final private int tabSize = 4;
+	private int indent = 0;
 
 	private static Pattern STRING_PATTERN = new Pattern("\"({target}.+)\"");
 	private static Pattern INTEGER_PATTERN = new Pattern("(?!\\[)({target}\\d+)(?!\\])");
@@ -205,6 +208,7 @@ public class PraatTextFile extends PraatFile {
 
 	@Override
 	public void writeLine(String format, Object... args) throws IOException {
+		writer.write(Strings.repeat(" ", tabSize * indent));
 		writer.write(String.format(Locale.US, format, args));
 		writeLine();
 	}
@@ -213,6 +217,15 @@ public class PraatTextFile extends PraatFile {
 		writer.write(eol);
 	}
 
+	@Override
+	public void increaseIndent() {
+		indent++;
+	}
+
+	@Override
+	public void decreaseIndent() {
+		indent--;
+	}
 	/**
 	 * Constants for end-of-line (EOL) encoding, named for their prevalent operating system.
 	 * 
