@@ -62,7 +62,20 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 
 	@Override
 	public void write(PraatFile file) throws IOException {
-		// TODO Auto-generated method stub
+		file.writeDouble("xmin =", xmin);
+		file.writeDouble("xmax =", xmax);
+		file.writeInteger("intervals: size =", items.size());
+
+		// iterate over items
+		int p = 1;
+		for (Interval point : items) {
+			file.writeLine("intervals [%d]:", p++);
+			file.increaseIndent();
+			file.writeDouble("xmin =", point.getStartTime());
+			file.writeDouble("xmax =", point.getEndTime());
+			file.writeString("text =", point.getText());
+			file.decreaseIndent();
+		}
 	}
 
 	@Override

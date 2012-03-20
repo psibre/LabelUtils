@@ -1,5 +1,6 @@
 package org.praat;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.google.common.base.Objects;
@@ -51,6 +52,28 @@ public class TextGrid extends Collection implements PraatObject {
 		xmin = file.readDouble();
 		xmax = file.readDouble();
 		return super.read(file);
+	}
+
+	@Override
+	public void write(PraatFile file) throws IOException {
+		file.writeDouble("xmin =", xmin);
+		file.writeDouble("xmax =", xmax);
+		file.writeLine("tiers? <exists> ");
+		file.writeInteger("size =", items.size());
+
+		// iterate over items
+		int i = 1;
+		file.writeLine("item []: ");
+		for (PraatObject item : items) {
+			file.increaseIndent();
+			file.writeLine("item [%d]:", i++);
+			file.increaseIndent();
+			file.writeString("class =", item.getClass().getSimpleName());
+			file.writeString("name =", item.getName());
+			item.write(file);
+			file.decreaseIndent();
+			file.decreaseIndent();
+		}
 	}
 
 	@Override
