@@ -77,7 +77,11 @@ public class TextGrid extends Collection implements PraatObject {
 	public void write(PraatFile file) throws IOException {
 		file.writeDouble("xmin =", xmin);
 		file.writeDouble("xmax =", xmax);
-		file.writeLine("tiers? <exists> ");
+		if (file instanceof PraatShortTextFile) {
+			((PraatShortTextFile) file).writeBareString("<exists>");
+		} else {
+			file.writeLine("tiers? <exists> ");
+		}
 		file.writeInteger("size =", items.size());
 
 		// iterate over items

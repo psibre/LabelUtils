@@ -23,6 +23,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.nio.charset.Charset;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,14 +54,50 @@ public class TextGridTest {
 		assertThat(utf8TextGrid, is(equalTo(utf8ShortTextGrid)));
 	}
 
-	@Test
-	public void compareTextIO() throws Exception {
-		String resource = "test.UTF-8.TextGrid";
+	private void compareTextIO(String resource, Charset charset, EOL eol) throws Exception {
+		compareTextIO(resource, charset, eol, false);
+	}
+
+	private void compareTextIO(String resource, Charset charset, EOL eol, boolean shortFormat) throws Exception {
 		File expected = new File(Resources.getResource(resource).getPath());
 		File actual = tempDir.newFile();
-		PraatObject object = PraatFile.read(resource, Charsets.UTF_8);
-		PraatFile.writeText(object, actual, Charsets.UTF_8, EOL.UNIX);
+		PraatObject object = PraatFile.read(resource, charset);
+		if (shortFormat == true) {
+			PraatFile.writeShortText(object, actual, charset, eol);
+		} else {
+			PraatFile.writeText(object, actual, charset, eol);
+		}
 		assertThat(Files.equal(actual, expected), is(true));
+	}
+
+	@Test
+	public void compareTextIO_ISO8859_WINDOWS() throws Exception {
+		compareTextIO("test.ISO-8859.CRLF.TextGrid", Charsets.ISO_8859_1, EOL.WINDOWS);
+	}
+
+	@Test
+	public void compareTextIO_UTF8_UNIX() throws Exception {
+		compareTextIO("test.UTF-8.TextGrid", Charsets.UTF_8, EOL.UNIX);
+	}
+
+	@Test
+	public void compareTextIO_UTF16_UNIX() throws Exception {
+		compareTextIO("test.UTF-16.TextGrid", Charsets.UTF_16, EOL.UNIX);
+	}
+
+	@Test
+	public void compareShortTextIO_ISO8859_WINDOWS() throws Exception {
+		compareTextIO("test.ISO-8859.CRLF.short.TextGrid", Charsets.ISO_8859_1, EOL.WINDOWS, true);
+	}
+
+	@Test
+	public void compareShortTextIO_UTF8_UNIX() throws Exception {
+		compareTextIO("test.UTF-8.short.TextGrid", Charsets.UTF_8, EOL.UNIX, true);
+	}
+
+	@Test
+	public void compareShortTextIO_UTF16_UNIX() throws Exception {
+		compareTextIO("test.UTF-16.short.TextGrid", Charsets.UTF_16, EOL.UNIX, true);
 	}
 
 }

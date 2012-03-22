@@ -35,6 +35,11 @@ public class PraatShortTextFile extends PraatTextFile {
 		writeLine();
 	}
 
+	public void writeBareString(String value) throws IOException {
+		writer.write(value);
+		writeLine();
+	}
+
 	@Override
 	public void writeInteger(String decorator, int value) throws IOException {
 		writer.write(number.format(value));
