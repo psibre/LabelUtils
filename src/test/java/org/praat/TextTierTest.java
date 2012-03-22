@@ -72,13 +72,33 @@ public class TextTierTest {
 	}
 
 	@Test
+	public void compareTextIO_ISO8859_WINDOWS() throws Exception {
+		compareTextIO("test.ISO-8859.CRLF.TextTier", Charsets.ISO_8859_1, EOL.WINDOWS);
+	}
+
+	@Test
 	public void compareTextIO_UTF8_UNIX() throws Exception {
 		compareTextIO("test.UTF-8.TextTier", Charsets.UTF_8, EOL.UNIX);
 	}
 
 	@Test
+	public void compareTextIO_UTF16_UNIX() throws Exception {
+		compareTextIO("test.UTF-16.TextTier", Charsets.UTF_16, EOL.UNIX);
+	}
+
+	@Test
+	public void compareShortTextIO_ISO8859_WINDOWS() throws Exception {
+		compareTextIO("test.ISO-8859.CRLF.short.TextTier", Charsets.ISO_8859_1, EOL.WINDOWS, true);
+	}
+
+	@Test
 	public void compareShortTextIO_UTF8_UNIX() throws Exception {
 		compareTextIO("test.UTF-8.short.TextTier", Charsets.UTF_8, EOL.UNIX, true);
+	}
+
+	@Test
+	public void compareShortTextIO_UTF16_UNIX() throws Exception {
+		compareTextIO("test.UTF-16.short.TextTier", Charsets.UTF_16, EOL.UNIX, true);
 	}
 
 }
