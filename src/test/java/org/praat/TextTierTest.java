@@ -23,6 +23,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.nio.charset.Charset;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -54,14 +55,30 @@ public class TextTierTest {
 		assertThat(utf8TextTier, is(equalTo(utf8ShortTextTier)));
 	}
 
-	@Test
-	public void compareTextIO() throws Exception {
-		String resource = "test.UTF-8.TextTier";
+	private void compareTextIO(String resource, Charset charset, EOL eol) throws Exception {
+		compareTextIO(resource, charset, eol, false);
+	}
+
+	private void compareTextIO(String resource, Charset charset, EOL eol, boolean shortFormat) throws Exception {
 		File expected = new File(Resources.getResource(resource).getPath());
 		File actual = tempDir.newFile();
-		PraatObject object = PraatFile.read(resource, Charsets.UTF_8);
-		PraatFile.writeText(object, actual, Charsets.UTF_8, EOL.UNIX);
+		PraatObject object = PraatFile.read(resource, charset);
+		if (shortFormat == true) {
+			PraatFile.writeShortText(object, actual, charset, eol);
+		} else {
+			PraatFile.writeText(object, actual, charset, eol);
+		}
 		assertThat(Files.equal(actual, expected), is(true));
+	}
+
+	@Test
+	public void compareTextIO_UTF8_UNIX() throws Exception {
+		compareTextIO("test.UTF-8.TextTier", Charsets.UTF_8, EOL.UNIX);
+	}
+
+	@Test
+	public void compareShortTextIO_UTF8_UNIX() throws Exception {
+		compareTextIO("test.UTF-8.short.TextTier", Charsets.UTF_8, EOL.UNIX, true);
 	}
 
 }

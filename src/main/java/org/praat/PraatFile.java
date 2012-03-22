@@ -99,8 +99,8 @@ abstract public class PraatFile {
 	}
 
 	public static void writeShortText(PraatObject object, File file, Charset charset, EOL eol) throws IOException {
-		PraatTextFile textFile = new PraatShortTextFile(file);
-		textFile.write(object);
+		PraatShortTextFile shortTextFile = new PraatShortTextFile(file, charset, eol);
+		shortTextFile.write(object);
 	}
 
 	public static void writeBinary(PraatObject object, File file) {

@@ -38,7 +38,7 @@ public class PraatTextFile extends PraatFile {
 
 	private BufferedReader reader;
 
-	private BufferedWriter writer;
+	protected BufferedWriter writer;
 	private String eol;
 	protected NumberFormat number;
 	final private int tabSize = 4;
@@ -52,19 +52,12 @@ public class PraatTextFile extends PraatFile {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PraatTextFile(File file) throws IOException {
-		this(file, Charset.defaultCharset());
-	}
-
-	public PraatTextFile(File file, Charset charset) throws IOException {
-		this(file, charset, EOL.WINDOWS);
-	}
-
 	public PraatTextFile(File file, Charset charset, EOL eol) throws IOException {
 		writer = Files.newWriter(file, charset);
 		this.eol = eol.toString();
 		number = NumberFormat.getInstance(Locale.US);
-		writeLine("File type = \"ooTextFile\"");
+		writer.write("File type = \"ooTextFile\"");
+		writeLine();
 	}
 
 	public PraatObject read(File file) throws Exception {
@@ -199,7 +192,8 @@ public class PraatTextFile extends PraatFile {
 	}
 
 	public void write(PraatObject object) throws IOException {
-		writeLine("Object class = \"%s\"", object.getClass().getSimpleName());
+		writer.write(String.format("Object class = \"%s\"", object.getClass().getSimpleName()));
+		writeLine();
 		writeLine();
 		writePayLoad(object);
 		writer.flush();
@@ -245,6 +239,7 @@ public class PraatTextFile extends PraatFile {
 	public void decreaseIndent() {
 		indent--;
 	}
+
 	/**
 	 * Constants for end-of-line (EOL) encoding, named for their prevalent operating system.
 	 * 
