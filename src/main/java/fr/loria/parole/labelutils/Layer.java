@@ -152,10 +152,21 @@ public class Layer {
 		return true;
 	}
 
+	public void append(Layer other) {
+		double offset = this.markers.last().getTime();
+		for (Marker marker : other.markers) {
+			this.markers.add(new Marker(marker, offset));
+		}
+	}
+
 	@Override
 	public String toString() {
 		String id = Objects.toStringHelper(this).add("name", name).add("markers", markers).toString();
 		return id;
+	}
+
+	public SortedSet<Marker> getMarkers() {
+		return markers;
 	}
 
 }

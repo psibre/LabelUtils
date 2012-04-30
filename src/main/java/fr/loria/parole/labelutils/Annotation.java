@@ -42,6 +42,21 @@ public class Annotation {
 		}
 	}
 
+	/**
+	 * Append other Annotation to the end of this one
+	 * 
+	 * @param other
+	 *            Annotation to append
+	 */
+	public void append(Annotation other) {
+		assert this.layers.size() == other.layers.size();
+		for (int i = 0; i < layers.size(); i++) {
+			Layer thisLayer = this.layers.get(i);
+			Layer otherLayer = other.layers.get(i);
+			thisLayer.append(otherLayer);
+		}
+	}
+
 	public TextGrid toTextGrid() {
 		// temporarily store tiers in List
 		List<Tier> tiers = Lists.newArrayList();
@@ -66,6 +81,10 @@ public class Annotation {
 	public String toString() {
 		String id = Objects.toStringHelper(this).add("layers", layers).toString();
 		return id;
+	}
+
+	public Layer getLayer(int i) {
+		return layers.get(i);
 	}
 
 }

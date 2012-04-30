@@ -42,4 +42,17 @@ public class LayerTest {
 		assertEquals(intervalTier, layer.toIntervalTier());
 	}
 
+	@Test
+	public void testAppend() {
+		// two identical Layers
+		Layer first = new Layer(intervalTier);
+		Layer second = new Layer(intervalTier);
+		// append second to the end of first
+		first.append(second);
+		// first should now contain twice as many Markers as second (ignoring the first, null Marker)
+		assertEquals(second.getMarkers().size() * 2, first.getMarkers().size() + 1);
+		// first should be twice as long as second
+		assertEquals(second.getMarkers().last().getTime() * 2, first.getMarkers().last().getTime(), 1e-10);
+	}
+
 }

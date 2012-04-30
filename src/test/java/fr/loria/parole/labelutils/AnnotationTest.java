@@ -48,4 +48,17 @@ public class AnnotationTest {
 		assertEquals(textGrid, annotation.toTextGrid());
 	}
 
+	@Test
+	public void testAppend() {
+		// two identical TextGrids
+		Annotation first = new Annotation(textGrid);
+		Annotation second = new Annotation(textGrid);
+		// append second to the end of first
+		first.append(second);
+		// first TextGrid's first Layer should now contain twice as many Markers as second's (ignoring the first, null Marker)
+		assertEquals(second.getLayer(0).getMarkers().size() * 2, first.getLayer(0).getMarkers().size() + 1);
+		// first TextGrid's first Layer should be twice as long as second's
+		assertEquals(second.getLayer(0).getMarkers().last().getTime() * 2, first.getLayer(0).getMarkers().last().getTime(), 1e-10);
+	}
+
 }

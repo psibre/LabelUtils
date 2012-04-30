@@ -36,6 +36,20 @@ public class Marker implements Comparable<Marker> {
 		this.type = type;
 	}
 
+	/**
+	 * Clone a Marker, applying an offset to the time
+	 * 
+	 * @param other
+	 *            Marker to clone
+	 * @param offset
+	 *            to add to the clone's time
+	 */
+	public Marker(Marker other, double offset) {
+		this.time = other.time + offset;
+		this.label = other.label;
+		this.type = other.type;
+	}
+
 	public Marker(Point point) {
 		time = point.getTime();
 		label = point.getText();
@@ -50,6 +64,10 @@ public class Marker implements Comparable<Marker> {
 
 	public double getTime() {
 		return time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
 	}
 
 	public String getLabel() {
