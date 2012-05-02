@@ -44,7 +44,7 @@ public class PraatTextFile extends PraatFile {
 	final private int tabSize = 4;
 	private int indent = 0;
 
-	private static Pattern STRING_PATTERN = new Pattern("\"({target}.+)\"");
+	private static Pattern STRING_PATTERN = new Pattern("\"({target}.*)\"");
 	private static Pattern INTEGER_PATTERN = new Pattern("(?!\\[)({target}\\d+)(?!\\])");
 	private static Pattern DOUBLE_PATTERN = new Pattern("(?!\\[)({target}\\d+(\\.\\d+)?)(?!\\])");
 
