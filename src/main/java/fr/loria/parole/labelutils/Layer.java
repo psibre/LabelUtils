@@ -55,10 +55,14 @@ public class Layer {
 			}
 		} else if (tier instanceof PointTier || tier instanceof TextTier) {
 			PointTier pointTier = (PointTier) tier;
+			Marker start = new Marker(tier.getStartTime(), null, Anchor.BOUNDARY);
+			markers.add(start);
 			for (Point point : pointTier) {
 				Marker marker = new Marker(point);
 				markers.add(marker);
 			}
+			Marker end = new Marker(tier.getEndTime(), null, Anchor.BOUNDARY);
+			markers.add(end);
 		} else {
 			throw new IllegalArgumentException("Unsupported tier class: " + tier.getClass());
 		}
@@ -96,13 +100,13 @@ public class Layer {
 	}
 
 	/**
-	 * Construct a PointTier from this Layer. The first and last Marker times will determine the time domain of the PointTier. <br>
+	 * Construct a TextTier from this Layer. The first and last Marker times will determine the time domain of the TextTier. <br>
 	 * Note that the first and last Markers' labels will be discarded, since their function will be reduced to providing the start
-	 * and end times of the PointTier.
+	 * and end times of the TextTier.
 	 * 
-	 * @return the PointTier
+	 * @return the TextTier
 	 */
-	public PointTier toPointTier() {
+	public TextTier toTextTier() {
 		// temporarily store intervals in List
 		List<Point> points = Lists.newArrayList();
 
@@ -121,18 +125,18 @@ public class Layer {
 		// construct new PointTier
 		double startTime = markers.first().getTime();
 		double endTime = markers.last().getTime();
-		PointTier tier = new PointTier(name, startTime, endTime, points);
+		TextTier tier = new TextTier(name, startTime, endTime, points);
 		return tier;
 	}
 
 	/**
-	 * Convenience method to construct a TextTier from this Layer.
+	 * Convenience method to construct a PointTier from this Layer.
 	 * 
-	 * @return the TextTier
-	 * @see Layer#toPointTier()
+	 * @return the PointTier
+	 * @see Layer#toTextTier()
 	 */
-	public TextTier toTextTier() {
-		TextTier tier = (TextTier) toPointTier();
+	public PointTier toPointTier() {
+		PointTier tier = (PointTier) toTextTier();
 		return tier;
 	}
 
@@ -143,8 +147,10 @@ public class Layer {
 	 */
 	public boolean containsOnlyPoints() {
 		for (Marker marker : markers) {
-			if (marker.equals(markers.first()) || marker.equals(markers.last()) && !marker.getType().equals(Anchor.BOUNDARY)) {
-				return false;
+			if (marker.equals(markers.first()) || marker.equals(markers.last())) {
+				if (!marker.getType().equals(Anchor.BOUNDARY)) {
+					return false;
+				}
 			} else if (!marker.getType().equals(Anchor.POINT)) {
 				return false;
 			}

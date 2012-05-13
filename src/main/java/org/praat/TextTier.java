@@ -19,10 +19,16 @@
  */
 package org.praat;
 
+import java.util.List;
+
 public class TextTier extends PointTier {
 
 	public TextTier(PraatFile file) throws Exception {
 		super(file);
+	}
+
+	public TextTier(String name, double startTime, double endTime, List<Point> points) {
+		super(name, startTime, endTime, points);
 	}
 
 }
