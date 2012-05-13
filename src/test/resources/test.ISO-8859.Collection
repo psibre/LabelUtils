@@ -16,7 +16,7 @@ item []:
         intervals [2]:
             xmin = 1 
             xmax = 2 
-            text = "Ã¤" 
+            text = "ä" 
     item [2]:
         class = "TextTier" 
         name = "bar" 
@@ -25,4 +25,4 @@ item []:
         points: size = 1 
         points [1]:
             number = 1 
-            mark = "Ã¦" 
+            mark = "æ" 

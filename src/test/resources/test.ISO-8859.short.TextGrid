@@ -15,14 +15,14 @@ Object class = "TextGrid"
 ""
 1
 2
-"Ã¤"
+"ä"
 "TextTier"
 "bar"
 0
 2
 1
 1
-"Ã¦"
+"æ"
 "IntervalTier"
 "baz"
 0
@@ -30,7 +30,7 @@ Object class = "TextGrid"
 2
 0
 1
-"Ã¥"
+"å"
 1
 2
 "\at"

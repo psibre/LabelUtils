@@ -1,10 +1,7 @@
 File type = "ooTextFile"
-Object class = "TextGrid"
+Object class = "Collection"
 
-0
 2
-<exists>
-3
 "IntervalTier"
 "foo"
 0
@@ -23,14 +20,3 @@ Object class = "TextGrid"
 1
 1
 "æ"
-"IntervalTier"
-"baz"
-0
-2
-2
-0
-1
-"å"
-1
-2
-"\at"

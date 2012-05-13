@@ -1,10 +1,7 @@
 File type = "ooTextFile"
-Object class = "TextGrid"
+Object class = "Collection"
 
-xmin = 0 
-xmax = 2 
-tiers? <exists> 
-size = 3 
+size = 2 
 item []: 
     item [1]:
         class = "IntervalTier" 
@@ -19,7 +16,7 @@ item []:
         intervals [2]:
             xmin = 1 
             xmax = 2 
-            text = "ä" 
+            text = "Ã¤" 
     item [2]:
         class = "TextTier" 
         name = "bar" 
@@ -28,18 +25,4 @@ item []:
         points: size = 1 
         points [1]:
             number = 1 
-            mark = "æ" 
-    item [3]:
-        class = "IntervalTier" 
-        name = "baz" 
-        xmin = 0 
-        xmax = 2 
-        intervals: size = 2 
-        intervals [1]:
-            xmin = 0 
-            xmax = 1 
-            text = "å" 
-        intervals [2]:
-            xmin = 1 
-            xmax = 2 
-            text = "\at" 
+            mark = "Ã¦" 

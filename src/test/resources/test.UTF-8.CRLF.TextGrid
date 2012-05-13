@@ -19,7 +19,7 @@ item []:
         intervals [2]:
             xmin = 1 
             xmax = 2 
-            text = "ä" 
+            text = "Ã¤" 
     item [2]:
         class = "TextTier" 
         name = "bar" 
@@ -28,7 +28,7 @@ item []:
         points: size = 1 
         points [1]:
             number = 1 
-            mark = "æ" 
+            mark = "Ã¦" 
     item [3]:
         class = "IntervalTier" 
         name = "baz" 
@@ -38,7 +38,7 @@ item []:
         intervals [1]:
             xmin = 0 
             xmax = 1 
-            text = "å" 
+            text = "Ã¥" 
         intervals [2]:
             xmin = 1 
             xmax = 2 

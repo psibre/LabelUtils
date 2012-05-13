@@ -11,4 +11,4 @@ intervals [1]:
 intervals [2]:
     xmin = 1 
     xmax = 2 
-    text = "ä" 
+    text = "Ã¤" 
