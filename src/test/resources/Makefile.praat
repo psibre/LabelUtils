@@ -48,3 +48,11 @@ plus it
 Write to binary file... test.binary.Collection
 Write to text file... test.UTF-8.Collection
 Write to short text file... test.UTF-8.short.Collection
+
+# split into parts
+select tg
+tg1 = Extract part... 0 1 no
+Write to text file... test_part1.UTF-8.TextGrid
+select tg
+tg2 = Extract part... 1 2 no
+Write to text file... test_part2.UTF-8.TextGrid

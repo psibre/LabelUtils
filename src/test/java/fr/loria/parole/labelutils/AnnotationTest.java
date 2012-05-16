@@ -61,4 +61,17 @@ public class AnnotationTest {
 		assertEquals(second.getLayer(0).getMarkers().last().getTime() * 2, first.getLayer(0).getMarkers().last().getTime(), 1e-10);
 	}
 
+	public void testTextGridAppend() throws Exception {
+		TextGrid part1 = (TextGrid) PraatFile.read("test_part1.UTF-8.TextGrid");
+		TextGrid part2 = (TextGrid) PraatFile.read("test_part2.UTF-8.TextGrid");
+		Annotation first = new Annotation(part1);
+		Annotation second = new Annotation(part2);
+		// append second to the end of first
+		first.append(second);
+		// convert back to TextGrid
+		TextGrid appended = first.toTextGrid();
+		// first should now be identical to test reference
+		assertEquals(textGrid, appended);
+	}
+
 }
