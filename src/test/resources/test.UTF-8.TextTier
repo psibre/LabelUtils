@@ -6,4 +6,4 @@ xmax = 2
 points: size = 1 
 points [1]:
     number = 1 
-    mark = "æ" 
+    mark = "\th" 
