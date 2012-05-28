@@ -3,7 +3,7 @@
 
 	<groupId>fr.loria.parole</groupId>
 	<artifactId>labelutils</artifactId>
-	<version>0.1</version>
+	<version>0.2-SNAPSHOT</version>
 
 	<name>LabelUtils</name>
 	<description>Label/Annotation Utilities</description>
