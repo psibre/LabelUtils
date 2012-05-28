@@ -46,7 +46,7 @@ public class PraatTextFile extends PraatFile {
 
 	private static Pattern STRING_PATTERN = new Pattern("\"({target}.*)\"");
 	private static Pattern INTEGER_PATTERN = new Pattern("(?!\\[)({target}\\d+)(?!\\])");
-	private static Pattern DOUBLE_PATTERN = new Pattern("(?!\\[)({target}\\d+(\\.\\d+)?)(?!\\])");
+	private static Pattern DOUBLE_PATTERN = new Pattern("(?!\\[)({target}\\d+(\\.\\d+)?)(?![\\d\\]])");
 
 	public PraatTextFile() {
 		// TODO Auto-generated constructor stub
