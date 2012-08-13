@@ -45,6 +45,11 @@ abstract public class PraatFile {
 
 		// inspect file reading first line
 		File file = new File(path);
+
+		return readFromFile(file, charset);
+	}
+
+	public static PraatObject readFromFile(File file, Charset charset) throws Exception {
 		String firstLine;
 		try {
 			firstLine = Files.readFirstLine(file, charset);

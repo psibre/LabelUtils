@@ -169,4 +169,12 @@
 
 	</build>
 
+	<distributionManagement>
+		<!-- Don't try this at home: -->
+		<repository>
+			<id>gh-pages</id>
+			<url>file:///${basedir}/../${project.name}-gh-pages/repository/</url>
+		</repository>
+	</distributionManagement>
+
 </project>
