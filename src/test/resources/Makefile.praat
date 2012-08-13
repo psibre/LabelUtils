@@ -12,25 +12,25 @@ assert textOutEncoding$ == "UTF-8"
 tg = Create TextGrid... 0 2 "foo bar baz" bar
 
 # tier 1
-Insert boundary... 1 0.1
-Insert boundary... 1 0.2
-Insert boundary... 1 0.3
-Insert boundary... 1 0.4
-Insert boundary... 1 0.5
-Insert boundary... 1 0.6
-Insert boundary... 1 0.7
-Insert boundary... 1 0.8
-Insert boundary... 1 0.9
-Insert boundary... 1 1.0
-Insert boundary... 1 1.1
-Insert boundary... 1 1.2
-Insert boundary... 1 1.3
-Insert boundary... 1 1.4
-Insert boundary... 1 1.5
-Insert boundary... 1 1.6
-Insert boundary... 1 1.7
-Insert boundary... 1 1.8
-Insert boundary... 1 1.9
+Insert boundary... 1 0.100314159265358979
+Insert boundary... 1 0.200314159265358979
+Insert boundary... 1 0.300314159265358979
+Insert boundary... 1 0.400314159265358979
+Insert boundary... 1 0.500314159265358979
+Insert boundary... 1 0.600314159265358979
+Insert boundary... 1 0.700314159265358979
+Insert boundary... 1 0.800314159265358979
+Insert boundary... 1 0.900314159265358979
+Insert boundary... 1 1.000314159265358979
+Insert boundary... 1 1.100314159265358979
+Insert boundary... 1 1.200314159265358979
+Insert boundary... 1 1.300314159265358979
+Insert boundary... 1 1.400314159265358979
+Insert boundary... 1 1.500314159265358979
+Insert boundary... 1 1.600314159265358979
+Insert boundary... 1 1.700314159265358979
+Insert boundary... 1 1.800314159265358979
+Insert boundary... 1 1.900314159265358979
 Set interval text... 1 1 
 Set interval text... 1 2 \ao
 Set interval text... 1 3 b
@@ -57,7 +57,7 @@ Set interval text... 1 20 \sh
 Insert point... 2 1 \th
 
 # tier 3
-Insert boundary... 3 1.2
+Insert boundary... 3 1.200314159265358979
 Set interval text... 3 1 \hs
 Set interval text... 3 2 \vt
 

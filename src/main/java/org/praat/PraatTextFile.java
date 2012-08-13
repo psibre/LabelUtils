@@ -56,6 +56,7 @@ public class PraatTextFile extends PraatFile {
 		writer = Files.newWriter(file, charset);
 		this.eol = eol.toString();
 		number = NumberFormat.getInstance(Locale.US);
+		number.setMaximumFractionDigits(32);
 		writer.write("File type = \"ooTextFile\"");
 		writeLine();
 	}
