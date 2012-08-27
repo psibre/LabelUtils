@@ -19,7 +19,7 @@
  */
 package fr.loria.parole.labelutils;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,13 +39,13 @@ public class AnnotationTest {
 	@Test
 	public void createFromTextGrid() throws Exception {
 		Annotation annotation = new Annotation(textGrid);
-		assertNotNull(annotation);
+		assertThat(annotation).isNotNull();
 	}
 
 	@Test
 	public void testConversion() {
 		Annotation annotation = new Annotation(textGrid);
-		assertEquals(textGrid, annotation.toTextGrid());
+		assertThat(textGrid).isEqualTo(annotation.toTextGrid());
 	}
 
 	@Test
@@ -56,9 +56,10 @@ public class AnnotationTest {
 		// append second to the end of first
 		first.append(second);
 		// first TextGrid's first Layer should now contain twice as many Markers as second's (ignoring the first, null Marker)
-		assertEquals(second.getLayer(0).getMarkers().size() * 2, first.getLayer(0).getMarkers().size() + 1);
+		assertThat(second.getLayer(0).getMarkers().size() * 2).isEqualTo(first.getLayer(0).getMarkers().size() + 1);
 		// first TextGrid's first Layer should be twice as long as second's
-		assertEquals(second.getLayer(0).getMarkers().last().getTime() * 2, first.getLayer(0).getMarkers().last().getTime(), 1e-10);
+		assertThat(second.getLayer(0).getMarkers().last().getTime() * 2).isEqualTo(
+				first.getLayer(0).getMarkers().last().getTime(), offset(1e-10));
 	}
 
 	public void testTextGridAppend() throws Exception {
@@ -71,7 +72,7 @@ public class AnnotationTest {
 		// convert back to TextGrid
 		TextGrid appended = first.toTextGrid();
 		// first should now be identical to test reference
-		assertEquals(textGrid, appended);
+		assertThat(textGrid).isEqualTo(appended);
 	}
 
 }

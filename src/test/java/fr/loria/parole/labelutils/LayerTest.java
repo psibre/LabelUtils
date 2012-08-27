@@ -19,7 +19,7 @@
  */
 package fr.loria.parole.labelutils;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +39,7 @@ public class LayerTest {
 	@Test
 	public void test() {
 		Layer layer = new Layer(intervalTier);
-		assertEquals(intervalTier, layer.toIntervalTier());
+		assertThat(intervalTier).isEqualTo(layer.toIntervalTier());
 	}
 
 	@Test
@@ -50,9 +50,9 @@ public class LayerTest {
 		// append second to the end of first
 		first.append(second);
 		// first should now contain twice as many Markers as second (ignoring the first, null Marker)
-		assertEquals(second.getMarkers().size() * 2, first.getMarkers().size() + 1);
+		assertThat(second.getMarkers().size() * 2).isEqualTo(first.getMarkers().size() + 1);
 		// first should be twice as long as second
-		assertEquals(second.getMarkers().last().getTime() * 2, first.getMarkers().last().getTime(), 1e-10);
+		assertThat(second.getMarkers().last().getTime() * 2).isEqualTo(first.getMarkers().last().getTime(), offset(1e-10));
 	}
 
 }

@@ -19,7 +19,7 @@
  */
 package org.praat;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +37,7 @@ public class CollectionTest {
 
 	@Test
 	public void compareFormats() {
-		assertEquals(utf8Collection, utf8ShortCollection);
+		assertThat(utf8Collection).isEqualTo(utf8ShortCollection);
 	}
 
 }

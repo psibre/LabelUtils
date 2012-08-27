@@ -19,8 +19,7 @@
  */
 package org.praat;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -52,7 +51,7 @@ public class TextGridTest {
 
 	@Test
 	public void compareFormats() {
-		assertThat(utf8TextGrid, is(equalTo(utf8ShortTextGrid)));
+		assertThat(utf8TextGrid).isEqualTo(utf8ShortTextGrid);
 	}
 
 	private void compareTextIO(String resource, Charset charset, EOL eol) throws Exception {
@@ -68,7 +67,7 @@ public class TextGridTest {
 		} else {
 			PraatFile.writeText(object, actual, charset, eol);
 		}
-		assertThat(Files.equal(actual, expected), is(true));
+		assertThat(Files.equal(actual, expected)).isTrue();
 	}
 
 	@Test
