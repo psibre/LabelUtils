@@ -27,6 +27,8 @@ import org.junit.Test;
 import org.praat.IntervalTier;
 import org.praat.PraatFile;
 
+import fr.loria.parole.labelutils.Marker.Anchor;
+
 public class LayerTest {
 
 	private IntervalTier intervalTier;
@@ -53,6 +55,28 @@ public class LayerTest {
 		assertThat(second.getMarkers().size() * 2).isEqualTo(first.getMarkers().size() + 1);
 		// first should be twice as long as second
 		assertThat(second.getMarkers().last().getTime() * 2).isEqualTo(first.getMarkers().last().getTime(), offset(1e-10));
+	}
+
+	@Test
+	public void testPointLayerLogic() {
+		// empty layer
+		Layer empty = new Layer();
+		assertThat(empty.containsOnlyPoints()).isFalse();
+		// canonical point layer
+		Layer layer = new Layer();
+		layer.addMarker(new Marker(0, null, Anchor.BOUNDARY));
+		layer.addMarker(new Marker(0.5, "fnord", Anchor.POINT));
+		layer.addMarker(new Marker(1, null, Anchor.BOUNDARY));
+		assertThat(layer.containsOnlyPoints()).isTrue();
+		// pointless layer
+		layer.removeMarker(new Marker(0.5, "fnord", Anchor.POINT));
+		assertThat(layer.containsOnlyPoints()).isFalse();
+		// interval layer
+		layer.addMarker(new Marker(0.5, "fnord", Anchor.BOUNDARY));
+		assertThat(layer.containsOnlyPoints()).isFalse();
+		// mixed layer
+		layer.addMarker(new Marker(0.25, "foo", Anchor.POINT));
+		assertThat(layer.containsOnlyPoints()).isFalse();
 	}
 
 }

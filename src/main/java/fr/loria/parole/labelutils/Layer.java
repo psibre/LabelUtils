@@ -43,6 +43,10 @@ public class Layer {
 	private String name;
 	private SortedSet<Marker> markers = Sets.newTreeSet();
 
+	public Layer() {
+		// empty constructor
+	}
+
 	public Layer(Tier tier) {
 		name = tier.getName();
 		if (tier instanceof IntervalTier) {
@@ -146,16 +150,19 @@ public class Layer {
 	 * @return true if this is the case, false otherwise
 	 */
 	public boolean containsOnlyPoints() {
+		int points = 0;
 		for (Marker marker : markers) {
 			if (marker.equals(markers.first()) || marker.equals(markers.last())) {
-				if (!marker.getType().equals(Anchor.BOUNDARY)) {
-					return false;
+				if (marker.getType().equals(Anchor.BOUNDARY)) {
+					continue;
 				}
 			} else if (!marker.getType().equals(Anchor.POINT)) {
 				return false;
+			} else {
+				points++;
 			}
 		}
-		return true;
+		return points > 0;
 	}
 
 	public void append(Layer other) {
@@ -173,6 +180,14 @@ public class Layer {
 
 	public SortedSet<Marker> getMarkers() {
 		return markers;
+	}
+
+	public void addMarker(Marker marker) {
+		markers.add(marker);
+	}
+
+	public boolean removeMarker(Marker marker) {
+		return markers.remove(marker);
 	}
 
 }
