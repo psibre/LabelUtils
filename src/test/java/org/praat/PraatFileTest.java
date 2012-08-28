@@ -21,7 +21,7 @@ package org.praat;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -63,7 +63,7 @@ public class PraatFileTest {
 
 	@Test
 	public void compareFormats() throws Exception {
-		assertEquals(utf8IntervalTier, utf8ShortIntervalTier);
+		assertThat(utf8IntervalTier).isEqualTo(utf8ShortIntervalTier);
 	}
 
 }

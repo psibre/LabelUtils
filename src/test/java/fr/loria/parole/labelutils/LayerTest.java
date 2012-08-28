@@ -19,13 +19,15 @@
  */
 package fr.loria.parole.labelutils;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import org.praat.IntervalTier;
 import org.praat.PraatFile;
+
+import fr.loria.parole.labelutils.Marker.Anchor;
 
 public class LayerTest {
 
@@ -39,7 +41,7 @@ public class LayerTest {
 	@Test
 	public void test() {
 		Layer layer = new Layer(intervalTier);
-		assertEquals(intervalTier, layer.toIntervalTier());
+		assertThat(intervalTier).isEqualTo(layer.toIntervalTier());
 	}
 
 	@Test
@@ -50,9 +52,31 @@ public class LayerTest {
 		// append second to the end of first
 		first.append(second);
 		// first should now contain twice as many Markers as second (ignoring the first, null Marker)
-		assertEquals(second.getMarkers().size() * 2, first.getMarkers().size() + 1);
+		assertThat(second.getMarkers().size() * 2).isEqualTo(first.getMarkers().size() + 1);
 		// first should be twice as long as second
-		assertEquals(second.getMarkers().last().getTime() * 2, first.getMarkers().last().getTime(), 1e-10);
+		assertThat(second.getMarkers().last().getTime() * 2).isEqualTo(first.getMarkers().last().getTime(), offset(1e-10));
+	}
+
+	@Test
+	public void testPointLayerLogic() {
+		// empty layer
+		Layer empty = new Layer();
+		assertThat(empty.containsOnlyPoints()).isFalse();
+		// canonical point layer
+		Layer layer = new Layer();
+		layer.addMarker(new Marker(0, null, Anchor.BOUNDARY));
+		layer.addMarker(new Marker(0.5, "fnord", Anchor.POINT));
+		layer.addMarker(new Marker(1, null, Anchor.BOUNDARY));
+		assertThat(layer.containsOnlyPoints()).isTrue();
+		// pointless layer
+		layer.removeMarker(new Marker(0.5, "fnord", Anchor.POINT));
+		assertThat(layer.containsOnlyPoints()).isFalse();
+		// interval layer
+		layer.addMarker(new Marker(0.5, "fnord", Anchor.BOUNDARY));
+		assertThat(layer.containsOnlyPoints()).isFalse();
+		// mixed layer
+		layer.addMarker(new Marker(0.25, "foo", Anchor.POINT));
+		assertThat(layer.containsOnlyPoints()).isFalse();
 	}
 
 }

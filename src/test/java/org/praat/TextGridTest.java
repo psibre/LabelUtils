@@ -19,10 +19,10 @@
  */
 package org.praat;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 import org.junit.Before;
@@ -51,7 +51,7 @@ public class TextGridTest {
 
 	@Test
 	public void compareFormats() {
-		assertThat(utf8TextGrid, is(equalTo(utf8ShortTextGrid)));
+		assertThat(utf8TextGrid).isEqualTo(utf8ShortTextGrid);
 	}
 
 	private void compareTextIO(String resource, Charset charset, EOL eol) throws Exception {
@@ -67,7 +67,7 @@ public class TextGridTest {
 		} else {
 			PraatFile.writeText(object, actual, charset, eol);
 		}
-		assertThat(Files.equal(actual, expected), is(true));
+		assertThat(Files.equal(actual, expected)).isTrue();
 	}
 
 	@Test
@@ -98,6 +98,11 @@ public class TextGridTest {
 	@Test
 	public void compareShortTextIO_UTF16_UNIX() throws Exception {
 		compareTextIO("test.UTF-16.short.TextGrid", Charsets.UTF_16, EOL.UNIX, true);
+	}
+
+	@Test(expected = InvocationTargetException.class)
+	public void readMultilineLabel() throws Exception {
+		PraatFile.read("multilinelabel.TextGrid");
 	}
 
 }
