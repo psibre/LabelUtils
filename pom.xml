@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>fr.loria.parole</groupId>
+	<groupId>org.m2ci.msp</groupId>
 	<artifactId>labelutils</artifactId>
 	<version>0.2-SNAPSHOT</version>
 
@@ -18,8 +18,8 @@
 	</developers>
 
 	<organization>
-		<name>INRIA</name>
-		<url>http://www.inria.fr/</url>
+		<name>MMCI</name>
+		<url>http://m2ci.org/</url>
 	</organization>
 
 	<licenses>
