@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>fr.loria.parole</groupId>
+	<groupId>org.m2ci.msp</groupId>
 	<artifactId>labelutils</artifactId>
 	<version>0.2-SNAPSHOT</version>
 
@@ -18,8 +18,8 @@
 	</developers>
 
 	<organization>
-		<name>INRIA</name>
-		<url>http://www.inria.fr/</url>
+		<name>MMCI</name>
+		<url>http://m2ci.org/</url>
 	</organization>
 
 	<licenses>
@@ -35,6 +35,17 @@
 		<connection>scm:git:git://github.com/psibre/LabelUtils.git</connection>
 		<developerConnection>scm:git:git@github.com:psibre/LabelUtils.git</developerConnection>
 	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>bintray</id>
+			<url>https://api.bintray.com/maven/psibre/maven/LabelUtils</url>
+		</repository>
+		<snapshotRepository>
+			<id>bintray</id>
+			<url>https://oss.jfrog.org/artifactory/oss-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -174,13 +185,5 @@
 		</pluginManagement>
 
 	</build>
-
-	<distributionManagement>
-		<!-- Don't try this at home: -->
-		<repository>
-			<id>gh-pages</id>
-			<url>file:///${basedir}/../${project.name}-gh-pages/repository/</url>
-		</repository>
-	</distributionManagement>
 
 </project>
