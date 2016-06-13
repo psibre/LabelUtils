@@ -3,7 +3,7 @@
 
 	<groupId>org.m2ci.msp</groupId>
 	<artifactId>labelutils</artifactId>
-	<version>0.1.3</version>
+	<version>0.1.4-SNAPSHOT</version>
 
 	<name>LabelUtils</name>
 	<description>Label/Annotation Utilities</description>
