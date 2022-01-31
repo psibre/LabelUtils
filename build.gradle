@@ -30,6 +30,28 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
+            pom {
+                name = 'LabelUtils'
+                description = 'Label/Annotation Utilities'
+                inceptionYear = '2012'
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://apache.org/licenses/LICENSE-2.0'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'psibre'
+                        name = 'Ingmar Steiner'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/psibre/LabelUtils'
+                    connection = 'scm:git:github.com/psibre/LabelUtils.git'
+                    developerConnection = 'scm:git:ssh://github.com:psibre/labelutils.git'
+                }
+            }
         }
     }
 }
