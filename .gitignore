@@ -1,5 +1,6 @@
-# Maven
-target
+# Gradle
+.gradle/
+build/
 
 # Eclipse
 .project
