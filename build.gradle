@@ -1,0 +1,57 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group 'org.m2ci.msp'
+version '0.2-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.google.guava', name: 'guava', version: '11.0.1'
+    implementation group: 'net.sourceforge.jregex', name: 'jregex', version: '1.2_01'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.10'
+    testImplementation group: 'org.easytesting', name: 'fest-assert-core', version: '2.0M7'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'LabelUtils'
+                description = 'Label/Annotation Utilities'
+                inceptionYear = '2012'
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://apache.org/licenses/LICENSE-2.0'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'psibre'
+                        name = 'Ingmar Steiner'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/psibre/LabelUtils'
+                    connection = 'scm:git:github.com/psibre/LabelUtils.git'
+                    developerConnection = 'scm:git:ssh://github.com:psibre/labelutils.git'
+                }
+            }
+        }
+    }
+}

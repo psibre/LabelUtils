@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,9 +34,11 @@ public class IntervalTier extends Tier implements Iterable<Interval> {
 	/**
 	 * Construct IntervalTier from a List of Intervals. The time domain of the IntervalTier will be determined by the start and
 	 * end time of the first and last Interval, respectively.
-	 * 
+	 *
 	 * @param name
+	 *   Tier name
 	 * @param intervals
+	 *   Intervals
 	 */
 	public IntervalTier(String name, List<Interval> intervals) {
 		this.name = name;
